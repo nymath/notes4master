@@ -1,0 +1,87 @@
+\documentclass[11pt]{article} 
+\usepackage{xeCJK} 
+\setCJKmainfont{PingFangSC-Light} %中文主字体设置 
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary[topaths]
+\newcount\mycount
+\usepackage{amssymb,latexsym}
+%Loads these packages for math symbols.  
+\usepackage{amsxtra}
+%Loads extra accent symbols.
+\usepackage{amsthm}
+%Let you use the nice Theorem and Definition Environments.
+\usepackage{graphicx}
+%Lets you put graphics into your document.  I won't go into that here.
+\usepackage{setspace}
+%This is George Greenwade's package.  You can set spacing to be one-half or double using the following commands right here in the preamble:
+\onehalfspacing
+%\doublespacing would use double-spacing.
+%\usepackage{hyperref}  %This allows you to make hyperlinks in your pdf and also within the document itself. We do not need this now but it could be useful later.
+\usepackage{wasysym} %You can make smiley faces with this package. There are other symbols, too.  Google it.  Again, we likely will not use this.
+\usepackage{verbatim} %This allows you to include LaTeX commands in your document (as text) that do not execute.  I use this to show you the LaTeX to type.
+\usepackage{arcs}%You only need this if you are creating notation for arcs in geometry.  See Section 6.10
+\usepackage{accents}
+%What follows are called "Proclamations."  They are displayed text environments.
+\theoremstyle{definition}
+%This sets the style for proclamations.  The options are plain, definition, and remark.  You can try all three to see what they do.  "definition" does not put things in italics
+%Since I do not like my theorems in italics, I use "definition."
+%The following set up your declarations. For example, the first one writes "Definition" and the section number after you begin a definition. This helps with automatic numbering.
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem*{fact}{Fact}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+% I do not want my facts numbered, so notice what I used.
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+%Next you can have some defintions, or shortcuts you use often.  Youwill come up with these for things you find yourself typing a lot.
+\newcommand{\df}{\displaystyle \frac} 
+\newcommand{\dlim}{\displaystyle \lim}
+\newcommand{\dint}{\displaystyle \int}
+\newcommand{\ra}{\rangle}
+\newcommand{\la}{\langle}
+
+\newcommand{\inner}[2]{{\langle #1,#2\rangle}}
+
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\xt}{\mathbf{x}^{\mathsf{T}}}
+\newcommand{\T}{{\mathsf{T}}}
+
+\newcommand{\abf}{\mathbf{a}}
+\newcommand{\abft}{\mathbf{a}^{\mathsf{T}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\f}{\mathbf{f}}
+\newcommand{\drm}{\mathrm{d}}
+\newcommand{\M}{\mathcal{M}}
+
+%You can use these so that you can type fractions or limits, and integrals within a line of text, and have it appear still in displaystyle. This is because I do not like the look of these inline.
+
+\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
+
+\begin{document} 
+\title{中文模版}
+\author{南怡}
+\maketitle
+
+\tableofcontents
+\newpage
+\section{期权}
+
+\end{document}

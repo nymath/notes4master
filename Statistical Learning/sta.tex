@@ -1,0 +1,544 @@
+\documentclass[12pt]{book}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary[topaths]
+\newcount\mycount
+\usepackage{amssymb,latexsym}
+%Loads these packages for math symbols.  
+\usepackage{amsxtra}
+%Loads extra accent symbols.
+\usepackage{amsthm}
+%Let you use the nice Theorem and Definition Environments.
+\usepackage{graphicx}
+%Lets you put graphics into your document.  I won't go into that here.
+\usepackage{setspace}
+%This is George Greenwade's package.  You can set spacing to be one-half or double using the following commands right here in the preamble:
+\onehalfspacing
+%\doublespacing would use double-spacing.
+%\usepackage{hyperref}  %This allows you to make hyperlinks in your pdf and also within the document itself. We do not need this now but it could be useful later.
+\usepackage{wasysym} %You can make smiley faces with this package. There are other symbols, too.  Google it.  Again, we likely will not use this.
+\usepackage{verbatim} %This allows you to include LaTeX commands in your document (as text) that do not execute.  I use this to show you the LaTeX to type.
+\usepackage{arcs}%You only need this if you are creating notation for arcs in geometry.  See Section 6.10
+\usepackage{accents}
+%What follows are called "Proclamations."  They are displayed text environments.
+\theoremstyle{definition}
+%This sets the style for proclamations.  The options are plain, definition, and remark.  You can try all three to see what they do.  "definition" does not put things in italics
+%Since I do not like my theorems in italics, I use "definition."
+%The following set up your declarations. For example, the first one writes "Definition" and the section number after you begin a definition. This helps with automatic numbering.
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem*{fact}{Fact}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+% I do not want my facts numbered, so notice what I used.
+
+%Next you can have some defintions, or shortcuts you use often.  Youwill come up with these for things you find yourself typing a lot.
+\newcommand{\df}{\displaystyle \frac} 
+\newcommand{\dlim}{\displaystyle \lim}
+\newcommand{\dint}{\displaystyle \int}
+\newcommand{\ra}{\rangle}
+\newcommand{\la}{\langle}
+
+\newcommand{\inner}[2]{{\langle #1,#2\rangle}}
+
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\xt}{\mathbf{x}^{\mathsf{T}}}
+\newcommand{\T}{{\mathsf{T}}}
+
+\newcommand{\abf}{\mathbf{a}}
+\newcommand{\abft}{\mathbf{a}^{\mathsf{T}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\f}{\mathbf{f}}
+\newcommand{\drm}{\mathrm{d}}
+\newcommand{\M}{\mathcal{M}}
+
+%You can use these so that you can type fractions or limits, and integrals within a line of text, and have it appear still in displaystyle. This is because I do not like the look of these inline.
+
+\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
+%The actual document starts now.
+
+\begin{document}
+
+\title{Notes of Statistical Learning}
+\author{Nanyi, UIBE}
+\maketitle % This actually puts the title, author, and date in.
+
+%$$
+%\begin{tikzpicture}[transform shape]
+%  %the multiplication with floats is not possible. Thus I split the loop in two.
+%  \foreach \number in {1,...,8}{
+%      % Computer angle:
+%        \mycount=\number
+%        \advance\mycount by -1
+%  \multiply\mycount by 45
+%        \advance\mycount by 0
+%      \node[draw,circle,inner sep=0.25cm] (N-\number) at (\the\mycount:5.4cm) {};
+%    }
+%  \foreach \number in {9,...,16}{
+%      % Computer angle:
+%        \mycount=\number
+%        \advance\mycount by -1
+%  \multiply\mycount by 45
+%        \advance\mycount by 22.5
+%      \node[draw,circle,inner sep=0.25cm] (N-\number) at (\the\mycount:5.4cm) {};
+%    }
+%  \foreach \number in {1,...,15}{
+%        \mycount=\number
+%        \advance\mycount by 1
+%  \foreach \numbera in {\the\mycount,...,16}{
+%    \path (N-\number) edge[->,bend right=3] (N-\numbera)  edge[<-,bend
+%      left=3] (N-\numbera);
+%  }
+%}
+%\end{tikzpicture}
+%$$
+This is not to b123e read as a PDF file.  Ideally, you will look at 123123the *.tex file and the *.pdf file side-by-side123 to read the comments and see the commands that created the PDF file.
+\tableofcontents
+\chapter{Measure, Integration and Analysis}
+\section{Real Measures}
+\section{Integration}
+\section{Decomposition Theorems}
+\section{Fourier Analysis}
+
+\chapter{Banach Spaces and  Hilbert Spaces}
+Normed vector spaces and Banach spaces capture the notion of distance. In this chapter we introduce inner product spaces, which capture the notion of angle. The concept of orthogonality plays a particularly important role in inner product spaces. \par
+Hilbert spaces are named in honor of David Hilbert(1862-1943), who helped develop parts of the theory in the early twentieth century. \par
+In this chapter, we will see a clean description of the bounded linear functionals on a Hilbert space. We will also see that every Hilbert space has an orthonormal basis, which make Hilbert spaces look much like standard Euclidean spaces but with infinite sums replacing finite sums.
+\newpage
+\section{Metric Spaces}
+\begin{definition}
+A complete normed vector space is called Banach space.
+\end{definition}
+\begin{theorem}
+$V$ is a Banach space if and only if converge absolutely impies converge.
+$$
+V \ \text{is a Banach space} \iff \sum_{k=1}^\infty \Vert g_k \Vert < \infty \ \text{implies}\  \sum_{k=1}^\infty g_k \ \text{converges}.
+$$
+\end{theorem}
+
+\begin{theorem}[$B(V,W)$ is a Banach space if $W$ is a Banach space] \ \\
+Suppose $V$ is a normed vector space and $W$ is a Banach space. Then $B(V,W)$ is a Banach space.	
+\end{theorem}
+
+\begin{theorem}[continuity is equivalent to boundedness for linear maps]
+	123
+\end{theorem}
+
+
+\section{Inner Product Spaces}
+\section{Orthogonality}
+\section{Conditional Expectation as Projection}
+\chapter{Linear Maps on Hilbert Spaces}
+\section{Adjoint}
+\begin{definition}[adjoint;$T^*$] \ \\
+Suppose $V$ and $W$ are Hilbert spaces and $T:V \to W$ is a bounded linear map.
+The adjoint of $T$ is the function $T^*:W \to V$ such that
+$$
+\inner{Tf}{g}=\inner{f}{T^*g}
+$$
+for every $f \in V$ and every $g \in W$.
+\end{definition}
+To see why the definiton above makes sense, fix $g\in W$. Consider the linear functional on V defined by $\varphi_g: f \mapsto \inner{Tf}{g}$. This linear functional is bounded and hence by the Riesz Representation Theorem,  there exist a unque element $h_g$ of $V$ such that
+$$
+\varphi_g(f)=\inner{Tf}{g}=\inner{f}{h_g}, \ \Vert h_g\Vert = \Vert \varphi_g \Vert.
+$$
+The procedure induces a linear map $g \mapsto h_g$, which is called the adjoint of $T$
+,denoted by $T^*$.
+
+\begin{theorem}[Properties of adjoint] \ \\
+Suppose $V$ and $W$ are Hilbert spaces and $T \in B(V,W)$, $T^*$ is the adjoint $T$.
+\begin{itemize}
+	\item $T^* \in B(W,V)$; $(T^*)^*=T$; $\Vert T^* \Vert = \Vert T \Vert$
+	\item $(S+T)^*=S^*+T^*$; $(aT)^*=\bar aT^*$
+	\item $I^*=I$
+	\item $(ST)^*=T^*S^*$  
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[null space and range of $T^*$] \ \\
+Suppose $V,W$ are Hilbert spaces and $T \in B(V,W)$, Then \\
+(a) $\mathrm{null} \ T^*=(\mathrm{range\ T})^{\perp}$ \\
+(b) $\overline{\mathrm{range} \ T^*}=(\mathrm{null} \ T)^{\perp}$\\
+(c) $\mathrm{null} \ T=(\mathrm{range\ T^*})^{\perp}$\\
+(d) $\overline{\mathrm{range} \ T}=(\mathrm{null} \ T^*)^{\perp}$
+\end{theorem}
+
+\begin{corollary}
+$T^*$ is injective if and only if $\overline{\mathrm{range} \ T}=W$
+\end{corollary}
+
+\begin{definition}[Invertible]
+123123
+\end{definition}
+
+\begin{theorem}Suppose $T$ is an operator on a Banach space $V$, then 
+$$
+(I-T)^{-1}=\sum_{k=0}^{\infty}T^k \ if \  \Vert T \Vert < 1.
+$$
+\end{theorem}
+
+\begin{theorem}[Inverible operators form an open set] \ \\
+Suppose V is a Banach space. Then $\{T\in B(V):\text{ T is invertible}\}$ is an open subset of $B(V)$.
+
+	
+\end{theorem}
+
+
+\begin{theorem}
+Suppose V is a Hilbert space and $T\in B(V)$. Then the followings are equivalent
+\\
+(a) $T$	is left invertible. \\
+(b) $\exists \ a \in (0,\infty)$ such that $\Vert f \Vert \le a \Vert Tf \Vert$ for all $f\in V$ \\
+(c) $T$ is injective and has closed range. \\
+(d) $T^*T$ is invertible.
+\end{theorem}
+
+
+
+\begin{theorem}
+Suppose V is a Hilbert space and $T\in B(V)$. Then the followings are equivalent
+\\
+(a) $T$ is right invertible. \\
+(b) $T$ is surjective.  \\
+(c) $TT^*$ is invertible.
+\end{theorem}
+
+\section{Spectrum}
+\begin{definition}Suppose $T$ is a bounded operator on a Banach space $V$.
+\begin{itemize}
+	\item A number $\alpha$ is called an eigenvalue of $T$ is $T-\alpha I$ is not injective.
+	\item A nonzero vector $f\in V$ is called an eigenvector of $T$ corresponding to an eigenvalue $\alpha \in F$ if $$ f \in \mathrm{null}\ T-\alpha I$$
+	\item The spectrum of $T$ is denoted by $\mathrm{sp}(T)$ and is defined by
+$$
+\mathrm{sp}(T) = \left\{ \alpha \in F: T-\alpha I \ \text{is not invertible}\right\}.
+$$
+\end{itemize}
+	\end{definition}
+
+\begin{remark}
+If $V$ is a finite-dimensional Banach space and $T \in B(V)$, the fundamental theorem of linear maps	induces that $T-\alpha I$ is not injective if and only if $T-\alpha I$ is not invertible. Thus if $T$ is an operator on a finite-dimensional Banach space, then the spectrum of $T$ equals eigenvalues of $T$.
+\end{remark}
+
+
+\begin{theorem}[$\mathrm{sp}(T)$ is closed] \ \\
+Suppose $T$ is a bounded operator on a Banach space $V$, then $\mathrm{sp}(T)$ is a closed subset of $V$.
+\begin{proof}
+	123
+\end{proof} 
+	
+\end{theorem}
+
+\begin{theorem}[$T-\alpha I$ is invertible for $\vert \alpha \vert$ large] \ \\
+Suppose $T$ is a bounded operator on a Banach space. Then \\
+(a) $\mathrm{sp}(T) \subset \left\{\alpha \in \mathbb F: \vert \alpha \vert < \Vert T \Vert \right\}$ \\
+(b) $T - \alpha I$ is invertible for all $\alpha \in F$ with $\vert \alpha \vert > \Vert T \Vert$ \\
+(c) $\lim_{\alpha \to \infty} \Vert (T-\alpha I)^{-1}\Vert = 0$ 
+\end{theorem}
+\begin{proof}
+We begin by proofing (b). Suppose $\vert \alpha \vert > \Vert T \Vert$. Then 
+$$
+T - \alpha I = -\alpha \left(I - \frac{T}{\alpha}\right).
+$$
+Because $\Vert T/\alpha \Vert < 1$, which implied that $T-\alpha I$ is invertible.
+\end{proof}
+
+\begin{theorem}
+Suppose $T$ is a bounded operator on a complex Hilbert space $V$. Then the function 
+$$
+\varphi(\alpha;T,f,g): \alpha \mapsto \inner{(T-\alpha I)^{-1}f}{g}
+$$	
+is analytic on $\mathbb{C}/\mathrm{sp}(T)$ for all $f,g \in V$.
+\end{theorem}
+
+\begin{theorem}[Spectrum is nonempty]
+123
+\end{theorem}
+
+
+\begin{definition}[self-adoint]
+A bounded operator $T$ on a Hilbert space is called self-adjoint if $T^*=T$.	
+\end{definition}
+
+\begin{remark}
+On a finite-dimensional Hilbert space $V$, the matrix of $T^*$ with respect to an orthonormal basis is the conjugate tranpose of that of $T$. Thus the matrix of a self-adjoint operator $T$ has the following form:
+$$
+\begin{bmatrix}
+	a_{11} & a_{12} & \cdots & a_{1n} \\
+	\overline{a_{12}} & a_{22} & \cdots & a_{2n} \\
+	\vdots & \vdots &     &     \vdots \\
+	\overline{a_{1n}} & \overline{a_{2n}} & \cdots & a_{nn} \\
+\end{bmatrix}
+$$  
+\end{remark}
+
+\begin{remark}[self-adjoint and complex conjugate]
+Some insight into the adjoint can be obtained by thinking the operation $T \mapsto T^*$ on $B(V)$ as analogous to the operation $ z \mapsto \overline z$ on $\mathbb C$. The following facts illustrate this analogy.  
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{definition}[Isometry and Unitary Operator] \ \\
+Suppose $T$ is a bounded operator on a Hilbert space $V$.
+\begin{itemize}
+	\item $T$ is called an isometry if $\Vert Tf \Vert = \Vert f \Vert$ for every $f\in V$.
+	\item $T$ is called unitary if $T^*T=TT^*=I$.
+\end{itemize}	
+\end{definition}
+
+\begin{theorem}[Unitary operators and their adjoints are isometries] \ \\ 
+Suppose $T$ is a bounded operator on a Hilbert space $V$. Then the followings are equivalent: \\
+(a) $T$ is unitary. \\
+(b) $T$ is an isometry and surjection. \\
+(c) $T$ and $T^*$ are both isometries. \\
+(d) $T^*$ is unitary. \\
+(e) T is invertible and $T^{-1}=T^*$. \\
+(f) $\{Te_k\}_{k \in \Gamma}$ is an orthonormal basis of $V$ for every orthonormal basis $\{e_k\}_{k\in\Gamma}$. \\
+(g) $\{Te_k\}_{k \in \Gamma}$ is an orthonormal basis of $V$ for some orthonormal basis $\{e_k\}_{k\in\Gamma}$. \\
+\end{theorem}
+
+\chapter{Matrix Calculus}
+\section{Basic Notations}
+suppose $\x \ \text{and}\ \abf \in \mathbb{R}^n$, and $(\mathbb{R}^n,\la\ra)$ is a Hilbert space, then we have
+
+$$\inner{\x}{\abf}=\sum_{i=1}^{n} a_ix_i=\abft\x$$ \\
+Also, suppose $f$ is map from $V(\R^n)$ to $W(\R^m)$. We apply the following notations as usual.
+\begin{itemize}
+	\item $f$ if $W=\F^1$
+	\item $\f$ if $W=\F^m$
+	\item $\mathbf{F}$ if $W=\F^{m \times n}$
+	\item $x$ if $V=\F^1$ 
+	\item $\x$ if $V=\F^n$
+	\item $\X$ if $V=\F^{m \times n}$
+\end{itemize}
+
+
+\section{Derivatives of first-order}
+
+We start with m = 1 and n $\neq$ 1. Define $\frac{\partial}{\partial\x}: F \to F^{n 
+\times 1}$ by
+
+
+\begin{equation}
+\pd{\x}f:=\begin{bmatrix}
+\pd{x_1}f \\
+\pd{x_2}f  \\
+\vdots \\
+\pd{x_n}f
+\end{bmatrix}, \ \ \ 
+\pd{\xt}f:=(\pd{\x}f)^\T=\begin{bmatrix}
+\pd{x_1}f & \pd{x_2}f & \cdots &\pd{x_n}f
+\end{bmatrix}
+\end{equation}
+
+Similarly, for m $!=0$ and $n!=0$. Define $\pd{\x}$: by 
+\begin{equation}
+\pd{\x^\T}\f :=1= \begin{bmatrix}
+	\pd{x_1}f_1 & \pd{x_2}f_1 & \cdots \pd{x_n}f_1 \\
+	\pd{x_1}f_2 & \pd{x_2}f_2 & \cdots \pd{x_n}f_2 \\
+	\vdots & \vdots  &\vdots \\
+	\pd{x_1}f_m & \pd{x_2}f_m & \cdots \pd{x_n}f_m \\
+\end{bmatrix}
+\end{equation}
+
+
+
+\section{Differentiation}
+\begin{definition}[Derivatives]
+suppose $f$ is a map from $(\mathbb{R},d_\mathbb{R})$ to $(V,d_V)$. Then the derivative of f at $x_0$ is define by 
+$$
+f^{\prime}(x_0):=\lim_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0}.
+$$
+A direct consequence of this definition is $f^{\prime}(x_0) \in V$.
+\end{definition}
+
+\begin{definition}[Differentiation]
+Suppose $f$ is a map and $x_0 \in \mathbb{R}$. In order to approximate $f(x)-f(x_0)$ with a linear map. We define
+$$
+\drm f(x_0): \mathbb{R} \to \mathbb{R}, \ h \mapsto f^{\prime}(x_0)h
+$$
+if f is a map from $\mathbb R$ to $\mathbb R$. Similarly, $\f$ can be defined by
+$$
+\drm f(\mathbf{x_0}): \R^n \to \R, \ \mathbf h \mapsto \inner{\mathbf h}{\pd{\mathbf{x_0}}f}.
+$$
+Also,
+
+$$
+\drm \f(\mathbf{x_0}): \R^n \to \R^m, \ \mathbf h \mapsto \begin{bmatrix}
+	\inner{\mathbf h}{\pd{\mathbf{x_0}}f_1} \\
+	\inner{\mathbf h}{\pd{\mathbf{x_0}}f_2} \\
+	\vdots \\
+	\inner{\mathbf h}{\pd{\mathbf{x_0}}f_m}
+\end{bmatrix}
+$$
+	
+\end{definition}
+However, the definition above does not capture the essence of differentiation. In fact, differentiation operator is a map from $B(V,W) \to B(V,W)$(given $x_0$), where $V$ and $W$ are normed vector spaces. Now, suppose $x_0, v \in V$.
+
+\begin{definition}[Differentiation operator]
+Suppose $V$ and $W$ are normed vector spaces, $x_0$ and $v$ are vectors in $V$. If there exists a linear map $S$ from $V$ to $W$(an element of $B(V,W)$) such that
+$$
+\lim_{v \to 0} \frac{\Vert T(x_0+v)-T(x_0)- Sv\Vert}{\Vert v\Vert}=0
+$$
+\end{definition} 
+Then we say $T$ is differentiable at $x_0$ and $S$ is the differentiation of $T$ at $x_0$. For historical reasons, the differentiaion $S$ is usually written as $dT(x_0)$. \par
+
+\begin{theorem}[Jacobian Matrix]
+Suppose $f$ is a map from $\R^n$ to $\R^m$. Then the matrix of differentiation of $f$ at $x_0$($\drm f(x_0)$) with respect to the standard orthonormal basis is
+$$
+\mathcal{M}(\drm f(x_0)) = 
+\begin{bmatrix}
+	\pd{x_1}f_1(x_0) & \pd{x_2}f_1(x_0) & \cdots \pd{x_n}f_1(x_0) \\
+	\pd{x_1}f_2(x_0) & \pd{x_2}f_2(x_0) & \cdots \pd{x_n}f_2(x_0) \\
+	\vdots & \vdots  &\vdots \\
+	\pd{x_1}f_m(x_0) & \pd{x_2}f_m(x_0) & \cdots \pd{x_n}f_m(x_0) \\
+\end{bmatrix}
+$$
+\end{theorem}
+$\mathcal{M}(\drm f(x_0))$ is also known as the Jacobian Matrix of $\f$.
+\begin{theorem}[Chain rules]\label{Chain rules}
+Suppose $f:U \to V$, $g:V \to W$. If $f$ is differentiable at $x_0$ and $g$ is differentiable at $f(x_0)$, then $g \circ f$ is differentiable at $x_0$ and 
+$$
+(\drm(g \circ f))(x_0) = (\drm g)(f(x_0)) \circ d f(x_0). 
+$$
+\end{theorem}
+Taking matrice of the equality above, we obtain
+$$
+\mathcal{M}((\drm(g \circ f))(x_0))=\mathcal{M}((\drm g)(f(x_0)) \circ d f(x_0))= \mathcal{M}((\drm g)(f(x_0))) \mathcal{M}(\drm f(x_0)).
+$$
+\begin{example}[dx]
+In calculus, the notion $\drm x$ is often used but never being strictly defined, thus this example attempts to given an accurate explaination of Total Differential Formula
+$$
+\drm f(x_0) = f^\prime(x_0)\drm x,\ \drm f(\mathbf{x_0}) = \sum_{i=1}^{n} \pd{x_i}f(\mathbf{x_0}) \drm x_i.   
+$$
+At first, we consider $\drm x$. By definition, 
+$$
+\drm f(x_0): \ \R \to \R,\  h \mapsto h. 
+$$
+Where $f$ is a indentical map. From the equality above, we know that $\drm x$ is also a  indentical map. Easy to verify that
+$$
+\drm f(x_0) = f^\prime(x_0)\drm x. 
+$$
+This equality relationship often wriiten as $\frac{\drm f(x_0)}{\drm x}=f^\prime(x_0)$. \par
+Next, we concentrate on the case of multivariate. In this case, $\drm x_i$ has different meanings in constract to $\drm x$.
+$$
+\M(\drm f(\mathbf{x_0})) = \begin{bmatrix}
+	\pd{x_1}f(\mathbf{x_0}), \pd{x_2}f(\mathbf{x_0}), \cdots, \pd{x_n}f(\mathbf{x_0})
+\end{bmatrix}.
+$$
+x123
+$$
+\M(\drm x):= \M(\drm I(\mathbf{x_0})) = \begin{bmatrix}
+	1,1,\cdots,1
+\end{bmatrix}.
+$$
+$\drm x_i$ maps a vector its i-th slot. To be specific, suppose ${v_k:k=1,2,\cdots,n}$,is a basis of $V$. Suppose $v=\sum_{i=1}^n a_iv_i$, $\drm x_i(v)=a_i$, and hence
+
+$$
+\M(\drm x_1):= \begin{bmatrix}
+	1,0,\cdots,0
+\end{bmatrix}
+$$ 
+\end{example}
+
+$$
+\drm x = \sum_{i=1}^n \drm x_i
+$$
+
+$$
+\M(\sum_{i=1}^{n} \pd{x_i}f(\mathbf{x_0})\drm x_i) = \begin{bmatrix}
+	\pd{x_1}f(\mathbf{x_0}), \pd{x_2}f(\mathbf{x_0}), \cdots, \pd{x_n}f(\mathbf{x_0})
+\end{bmatrix}.
+$$
+and thus, 
+$$
+\drm f(\mathbf{x_0}) = \sum_{i=1}^{n} \pd{x_i}f(\mathbf{x_0})\drm x_i
+$$
+
+At last, suppose $f:V \to W$, where $V$ and $W$ are normed vector spaces. We also suppose that 
+
+\begin{example}
+Find the differentiation of $f(t,s)=t^2+s^3$ at $(t,s)$.  \\
+$$\drm f(t,s)=2t\drm t+3s^2\drm s$$
+where $\M (\drm t)=\begin{bmatrix}
+	1,0
+\end{bmatrix}$ and $\M (\drm s)=\begin{bmatrix}
+	0,1
+\end{bmatrix}$.
+\end{example}
+
+
+
+
+
+
+
+
+\begin{definition}[maps in the form of matrix]
+Suppose  $\mathcal{F}:\mathbb{F}^{m \times n} \to \mathbb{F}^{m \times n}$
+$$
+\mathcal F (\mathrm X) = \begin{bmatrix}
+	f_{11}(x_{11}) &f_{12}(x_{12}) & \cdots & f_{1n}(x_{1n}) \\
+	f_{21}(x_{21}) &f_{22}(x_{22}) & \cdots & f_{2n}(x_{2n}) \\
+	\vdots &\vdots & \  & \vdots \\
+	f_{m1}(x_{m1}) &f_{m2}(x_{m2}) & \cdots & f_{mn}(x_{mn}) 
+\end{bmatrix}
+$$	
+$$
+\drm \mathcal F(X^0) := \begin{bmatrix}
+	\drm f_{11}(x_{11}^0) &\drm f_{12}(x_{12}^0) & \cdots &\drm f_{1n}(x_{1n}^0) \\
+	\drm f_{21}(x_{21}^0) & \drm f_{22}(x_{22}^0) & \cdots & \drm f_{2n}(x_{2n}^0) \\
+	\vdots &\vdots & \  & \vdots \\
+	\drm f_{m1}(x_{m1}^0) & \drm f_{m2}(x_{m2}^0) & \cdots & \drm f_{mn}(x_{mn}^0) 
+\end{bmatrix}
+$$
+$$
+\drm X = \begin{bmatrix}
+	dx_{ij}
+\end{bmatrix}
+$$
+suppose $f:\mathbb F^{m \times n} \to \mathbb F$
+$$
+\frac{\drm f}{\drm X} := \begin{bmatrix}
+	\frac{\partial f}{\partial x_{ij}}
+\end{bmatrix}
+$$
+\end{definition}
+
+\chapter{Linear Models}
+324
+
+ \ aaa\\
+\ \\
+32
+\chapter{Genelised Linear Models}
+
+
+
+
+\end{document}

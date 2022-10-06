@@ -1,0 +1,58 @@
+\documentclass[12pt]{book}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary[topaths]
+\newcount\mycount
+\usepackage{amssymb,latexsym}
+%Loads these packages for math symbols.  
+\usepackage{amsxtra}
+%Loads extra accent symbols.
+\usepackage{amsthm}
+%Let you use the nice Theorem and Definition Environments.
+\usepackage{graphicx}
+\usepackage{ctex}
+%Lets you put graphics into your document.  I won't go into that here.
+\usepackage{setspace}
+%This is George Greenwade's package.  You can set spacing to be one-half or double using the following commands right here in the preamble:
+\onehalfspacing
+%\doublespacing would use double-spacing.
+%\usepackage{hyperref}  %This allows you to make hyperlinks in your pdf and also within the document itself. We do not need this now but it could be useful later.
+\usepackage{wasysym} %You can make smiley faces with this package. There are other symbols, too.  Google it.  Again, we likely will not use this.
+\usepackage{verbatim} %This allows you to include LaTeX commands in your document (as text) that do not execute.  I use this to show you the LaTeX to type.
+\usepackage{arcs}%You only need this if you are creating notation for arcs in geometry.  See Section 6.10
+\usepackage{accents}
+\usepackage{xeCJK} 
+\setCJKmainfont{PingFangSC-Light}
+%What follows are called "Proclamations."  They are displayed text environments.
+\theoremstyle{definition}
+%This sets the style for proclamations.  The options are plain, definition, and remark.  You can try all three to see what they do.  "definition" does not put things in italics
+%Since I do not like my theorems in italics, I use "definition."
+%The following set up your declarations. For example, the first one writes "Definition" and the section number after you begin a definition. This helps with automatic numbering.
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem*{fact}{Fact}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+% I do not want my facts numbered, so notice what I used.
+
+%Next you can have some defintions, or shortcuts you use often.  Youwill come up with these for things you find yourself typing a lot.
+\newcommand{\df}{\displaystyle \frac} 
+\newcommand{\dlim}{\displaystyle \lim}
+\newcommand{\dint}{\displaystyle \int}
+
+\begin{document}
+\title{Multivariate Statistics}
+\author{Nanyi, UIBE}
+\maketitle 
+This is not to b123e read as a PDF file.  Ideally, you will look at 123123the *.tex file and the *.pdf file side-by-side123 to read the comments and see the commands that created the PDF file.
+\tableofcontents
+\chapter{321}
+3123123
+123
+
+\end{document}
