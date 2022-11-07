@@ -1,0 +1,540 @@
+\documentclass[12pt]{article}
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary[topaths]
+\newcount\mycount
+\usepackage{amssymb,latexsym}
+%Loads these packages for math symbols.  
+\usepackage{amsxtra}
+%Loads extra accent symbols.
+\usepackage{amsthm}
+%Let you use the nice Theorem and Definition Environments.
+\usepackage{graphicx}
+%Lets you put graphics into your document.  I won't go into that here.
+\usepackage{setspace}
+%This is George Greenwade's package.  You can set spacing to be one-half or double using the following commands right here in the preamble:
+\onehalfspacing
+%\doublespacing would use double-spacing.
+%\usepackage{hyperref}  %This allows you to make hyperlinks in your pdf and also within the document itself. We do not need this now but it could be useful later.
+\usepackage{wasysym} %You can make smiley faces with this package. There are other symbols, too.  Google it.  Again, we likely will not use this.
+\usepackage{verbatim} %This allows you to include LaTeX commands in your document (as text) that do not execute.  I use this to show you the LaTeX to type.
+\usepackage{arcs}%You only need this if you are creating notation for arcs in geometry.  See Section 6.10
+\usepackage{accents}
+%What follows are called "Proclamations."  They are displayed text environments.
+\theoremstyle{definition}
+%This sets the style for proclamations.  The options are plain, definition, and remark.  You can try all three to see what they do.  "definition" does not put things in italics
+%Since I do not like my theorems in italics, I use "definition."
+%The following set up your declarations. For example, the first one writes "Definition" and the section number after you begin a definition. This helps with automatic numbering.
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\urlstyle{same}
+%-----------------------------------------------------------------------------%
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem*{fact}{Fact}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+% I do not want my facts numbered, so notice what I used.
+
+%Next you can have some defintions, or shortcuts you use often.  Youwill come up with these for things you find yourself typing a lot.
+\newcommand{\df}{\displaystyle \frac} 
+\newcommand{\dlim}{\displaystyle \lim}
+\newcommand{\dint}{\displaystyle \int}
+\newcommand{\ra}{\rangle}
+\newcommand{\la}{\langle}
+
+\newcommand{\inner}[2]{{\langle #1,#2\rangle}}
+
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\xt}{\mathbf{x}^{\mathsf{T}}}
+\newcommand{\T}{{\mathsf{T}}}
+
+\newcommand{\abf}{\mathbf{a}}
+\newcommand{\abft}{\mathbf{a}^{\mathsf{T}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathrm{e}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\Y}{\mathbf{Y}}
+
+\newcommand{\f}{\mathbf{f}}
+\newcommand{\U}{\mathbf{u}}
+\newcommand{\D}{\mathrm{d}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\nullspace}{\mathrm{null}}
+\newcommand{\range}{\mathrm{range}}
+%%Operation
+\newcommand{\Sum}[2]{{\sum_{#1}^{#2}}}
+\newcommand{\Union}[2]{{\bigcup_{#1}^{#2}}}
+\newcommand{\Intersection}[2]{{\bigcap_{#1}^{#2}}}
+%You can use these so that you can type fractions or limits, and integrals within a line of text, and have it appear still in displaystyle. This is because I do not like the look of these inline.
+
+\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
+\begin{document}
+\title{Matrix Calculus}
+\author{Nanyi, UIBE}
+\maketitle % This actually puts the title, author, and date in.
+\section{Differentiation of a function}
+\begin{definition}[Derivatives]
+suppose $f$ is a map from $(\mathbb{R},d_\mathbb{R})$ to $(V,d_V)$. Then the derivative of f at $x_0$ is define by 
+$$
+f^{\prime}(x_0):=\lim_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0}.
+$$
+A direct consequence of this definition is $f^{\prime}(x_0) \in V$.
+\end{definition}
+
+The definition of differentiation in calculus does not capture the essence of differentiation. In fact, differentiation operator is a map from $B(V,W) \to B(V,W)$(given $x_0$), where $V$ and $W$ are normed vector spaces. Now, suppose $x_0, v \in V$.
+
+\begin{definition}[Differentiation operator]
+Suppose $V$ and $W$ are normed vector spaces, $x_0$ and $v$ are vectors in $V$. If there exists a linear map $S$ from $V$ to $W$(an element of $B(V,W)$) such that
+$$
+\lim_{v \to 0} \frac{\Vert T(x_0+v)-T(x_0)- Sv\Vert}{\Vert v\Vert}=0
+$$
+\end{definition} 
+Then we say $T$ is differentiable at $x_0$ and $S$ is the differentiation of $T$ at $x_0$. For historical reasons, the differentiaion $S$ is usually written as $dT(x_0)$. \par
+
+\begin{theorem}[Jacobian Matrix]
+Suppose $f$ is a map from $\R^n$ to $\R^m$. Then the matrix of differentiation of $f$ at $x_0$($\D f(x_0)$) with respect to the standard orthonormal basis is
+$$
+\mathcal{M}(\D f(x_0)) = 
+\begin{bmatrix}
+	\pd{x_1}f_1(x_0) & \pd{x_2}f_1(x_0) & \cdots \pd{x_n}f_1(x_0) \\
+	\pd{x_1}f_2(x_0) & \pd{x_2}f_2(x_0) & \cdots \pd{x_n}f_2(x_0) \\
+	\vdots & \vdots  &\vdots \\
+	\pd{x_1}f_m(x_0) & \pd{x_2}f_m(x_0) & \cdots \pd{x_n}f_m(x_0) \\
+\end{bmatrix}
+$$
+\end{theorem}
+$\mathcal{M}(\D f(x_0))$ is also known as the Jacobian Matrix of $\f$.
+\begin{theorem}[Chain rules]\label{Chain rules}
+Suppose $f:U \to V$, $g:V \to W$. If $f$ is differentiable at $x_0$ and $g$ is differentiable at $f(x_0)$, then $g \circ f$ is differentiable at $x_0$ and 
+$$
+(\D(g \circ f))(x_0) = (\D g)(f(x_0)) \circ d f(x_0). 
+$$
+\end{theorem}
+Taking matrice of the equality above, we obtain
+$$
+\mathcal{M}((\D(g \circ f))(x_0))=\mathcal{M}((\D g)(f(x_0)) \circ d f(x_0))= \mathcal{M}((\D g)(f(x_0))) \mathcal{M}(\D f(x_0)).
+$$
+
+
+
+
+
+
+\begin{definition}
+Suppose $x \in \R$, $f:\R \to \R$. Then $df(x_0)$ and $d\varphi(x_0)$ is defined by:
+$$
+\D f(x_0) := \R \to \R, h \mapsto f^\prime(x_0)h.
+$$
+$$
+\D \varphi=\D \varphi(x_0) := \R \to \R, h \mapsto h.
+$$
+For historical reasons, the notation $\D x$ is widely used in many textbooks. However, In this notes, we prefer to use $\D \varphi$ since this notation is well-defined.  
+
+\end{definition}
+
+
+\begin{definition} Suppose $f: \R^n \to \R$ and $\x_0 \in \R^n$. Then $\D f(\x_0)$ is defined by
+$$
+\D f(\x_0) := \R^n \to \R, h\mapsto \sum_{i=1}^{n} \pd{x_i}f(\x_0)h_i,
+$$
+and
+$$
+\D \varphi_k(\x_0) =\D x_k = \D \varphi_k := \R^n \to \R, h\mapsto h_k. 
+$$	
+\end{definition}
+
+\begin{remark}
+$$
+\D f(\x_0)=\sum_{i=1}^n \pd{x_i}f(\x_0)\D \varphi_k.
+$$	
+\end{remark}
+
+\begin{definition}
+Suppose $v_1,\cdots,v_n$ is a basis in $V$. And the dual space of $V$ is the collection of all bounded linear maps to from $V$ to $\F$, denoted by $V^\prime$. A basis $\varphi_1,\cdots,\varphi_n$ of $V$ is called a dual basis if 
+$$
+\varphi_i(\nu_k) = \delta_{ik}.
+$$
+In this situation, suppose $h = \sum_{i=1}^{n}h_i e_i$. we have that 
+$$
+\D x_i (h)=h_k.
+$$
+You should note that the definition of $\D x_i$ is consistent with the dual basis.
+\end{definition}
+
+
+
+
+\begin{example}
+Find the differentiation of $f(t,s)=t^2+s^3$ at $(t,s)$.  \\
+$$\D f(t,s)=2t\D t+3s^2\D s$$
+where $\M (\D t)=\begin{bmatrix}
+	1,0
+\end{bmatrix}$ and $\M (\D s)=\begin{bmatrix}
+	0,1
+\end{bmatrix}$. In other words, $\D t = \D \varphi_1$, $\D s = \D \varphi_2$.
+\end{example}
+
+
+
+\begin{definition} Suppose $f:\R^{m,n} \to \R$. Then $\D f(\X_0)$ is defined by
+$$
+\D f(\X_0): \R^{m,n} \to \R, \ H \mapsto \sum_{i=1}^m \sum_{j=1}^n \pd{x_{ij}}f(\X_0)H(i,j)
+$$
+$$
+\D \varphi_{ij}(\X_0): \R^{m,n} \to \R, \ H \mapsto H(i,j).
+$$
+In this case, we have
+$$
+\D f(\X_0) = \sum_{i=1}^m \sum_{j=1}^n \pd{x_{ij}}(\X_0) \D \varphi_{ij}.
+$$
+\end{definition}
+
+After clearing the definition of differentiation, we begin to define the derivative of $f$ with respect to a matrix.
+First note that 
+\begin{eqnarray*}
+	\D f(x_0) &=& f^\prime(x_0)\D x \\
+	&=& \inner{f^\prime(x_0)}{\D x}. 
+\end{eqnarray*}
+And thus we apply the following the notation 
+$$
+\frac{\D f}{\D x}(x_0) = f^\prime(x_0).
+$$
+to reflect this relationship.
+
+Aslo, we define $\D \mathbf{\varphi} = \D \x$ by
+$$
+\D \x = \begin{bmatrix}
+	\D \varphi_1 \\ 
+	\D \varphi_2 \\
+	\vdots \\
+	\D \varphi_n 
+\end{bmatrix}.gv
+$$
+Then the total differentiation of $f$ can written as
+\begin{eqnarray*}
+	\D f(\x_0) &=& \sum_{i=1}^n \pd{x_i}f(\x_0)\D \varphi_i \\
+	&=& \inner{\begin{bmatrix}
+	\pd{x_1}f(\x_0) \\ 
+	\pd{x_2}f(\x_0) \\
+	\vdots \\
+	\pd{x_n}f(\x_0) 
+	\end{bmatrix}}{\D \x} \\
+	&=& \mathrm{tr}(v^\prime \D \x).
+\end{eqnarray*}
+Simlilary,
+$$
+\frac{\D f}{\D \x}(\x_0) : = \begin{bmatrix}
+	\pd{x_1}f(\x_0) \\ 
+	\pd{x_2}f(\x_0) \\
+	\vdots \\
+	\pd{x_n}f(\x_0) 
+	\end{bmatrix}.
+$$
+At last,
+$$
+\frac{\D f}{\D \X}(\X_0) := \begin{bmatrix}
+	\pd{x_{11}}f(\X_0)&\pd{x_{12}}f(\X_0)&\cdots&\pd{x_{1m}}f(\X_0) \\
+	\pd{x_{21}}f(\X_0)&\pd{x_{22}}f(\X_0)&\cdots&\pd{x_{2m}}f(\X_0) \\
+	\vdots &\vdots& &\vdots \\
+	\pd{x_{n1}}f(\X_0)&\pd{x_{n2}}f(\X_0)&\cdots&\pd{x_{nm}}f(\X_0) \\
+\end{bmatrix}.
+$$
+\section{Differentiation of a matrix}
+\begin{definition}
+Suppose	$F = [f_{ij}]_{m\times n}$, where $f$ is a map defined on $\R^p$. Then $F$ can  be seen as a map from $\R^p$ to $\R^{m\times n}$, and 
+$$
+F: \R^p \to \R^{m \times n},\ \x \mapsto [f_{ij}(\x)]_{m \times n}.
+$$
+\end{definition}
+Similarly, we define the differentiation of $F$ at $\x_0$ by 
+$$
+\D F(\x_0):= [\D f_{ij}(\x_0)]_{m \times n}.
+$$
+where 
+$$
+\D f_{ij}(\x_0): \R^p \to \R, h \mapsto \sum_{i=1}^{n}\pd{x_i}f(\x_0)h_k.
+$$
+When $p = m \times n$ and $f_{ij}=\varphi_{ij}$. We have that 
+$$
+F(\X_0) = [\varphi_{ij}(\X_0)]=\begin{bmatrix}
+	X_{11} & X_{12} & \cdots & X_{1n} \\ 
+	X_{21} & X_{22} & \cdots & X_{2n} \\ 
+	\vdots & \vdots &   & \vdots \\ 
+	X_{m1} & X_{m2} & \cdots & X_{mn} \\ 
+\end{bmatrix}.
+$$
+
+\begin{example}
+Suppose $F:\R^2 \to \R^{2 \times 2}$	, and 
+$$
+F: (s,t) \mapsto \begin{bmatrix}
+	s+t & s^2+t^2 \\
+	e^s+t & \sin t +s 
+\end{bmatrix}.
+$$
+By definition, we have 
+$$
+\D F(s_0,t_0) =\begin{bmatrix}
+	\D s + \D t & 2s_0 \D s + 2t_0 \D t \\
+	e^{s_0} \D s + \D t & \D s + \cos t_0 \D t
+\end{bmatrix} 
+$$
+\end{example}
+
+\begin{theorem}[Properties of matrix diffrentiation] \ \\
+Suppose $F,G: \R^p \to \R^{ m\times n}$.
+Then we have the followings,
+\begin{itemize}
+	\item $\D(F+G) = \D F + \D G$;
+	\item $\D (FG) = (\D F)G+ F (\D G)$;
+	\item $\D (AFB) = A (\D F)B$;
+	\item $\D (F^{-1}) = - F^{-1}\D(F)F^{-1}$; 
+\end{itemize}
+\begin{proof}
+First note that,
+\begin{eqnarray*}
+	\D(F+G)(\x_0) &=& [\D(f_{ij}+g_{ij})(\x_0)]_{m \times n} \\
+	&=& [\D(f_{ij})(\x_0)]_{m \times n} + [\D(g_{ij})(\x_0)]_{m \times n} \\
+	&=& \D(F)(\x_0)+\D(G)(\x_0).
+\end{eqnarray*}
+\end{proof}
+\end{theorem}
+
+
+\begin{theorem}[Properties of matrix diffrentiation II] \ \\
+Suppose $F,G: \R^p \to \R^{ m\times n}$.
+Then we have the followings,
+\begin{itemize}
+	\item $\D (F^\prime) = \D(F)^\prime$;
+	\item $\D tr(F) = tr(\D F)$;
+	\item $\D |F| = |F|tr(F^{-1}\D F)$
+\end{itemize}
+Before starting the proof, we need to ensure there notations make sense. For example,  $tr(\D F)$ is defined by 
+$$
+tr(\D F)(\x_0):=tr(dF(\x_0))
+$$
+and 
+$$
+\D |F|(\x_0) := |\D F(\x_0)|
+$$
+\end{theorem}
+
+
+
+\begin{theorem}[Properties of matrix diffrentiation III] \ \\
+Suppose $F,G: \R^p \to \R^{ m\times n}$.
+Then we have the followings,
+\begin{itemize}
+	\item $\D (F \odot G) = \D(F) \odot G+ F \odot \D(G)$;
+	\item $\D(\sigma(F)) = \sigma^\prime (F) \odot \D F$
+\end{itemize}
+\end{theorem}
+\begin{example}
+Suppose $f: \X \mapsto A\X B$.
+\end{example}
+By definition, we have
+
+\begin{eqnarray*}
+	tr(\D f(\X_0)) &=& tr(A\D{\X}B) \\
+	&=& tr(A\D \X B) \\
+	&=& tr(BA\D \X).
+\end{eqnarray*}
+Thus we have
+$$
+\frac{\D f}{\D \X }(\X_0) = A^\prime B^\prime.
+$$
+\section{Derivatives}
+\begin{definition}[Scalar2Vector]
+Suppose $f:\R^n \to \R$ and $\x_0 \in \R^n$, then 
+$$
+\frac{\partial f}{\partial \x}(\x_0):= \begin{bmatrix}
+	\frac{\partial f}{\partial x_1}(\x_0) \\
+	\frac{\partial f}{\partial x_2}(\x_0) \\
+	\vdots \\
+	\frac{\partial f}{\partial x_n}(\x_0) \\
+\end{bmatrix}.
+$$
+\end{definition}
+In other words, $\frac{\partial f}{\partial \x}$ is defined to be a map from $\R^n \to \R^{n \times 1}.$
+
+\begin{definition}[Scalar2Matrix]
+Similarly, suppose $f:\R^{m \times n} \to \R$ and $\X_0 \in \R^n$, then 
+$$
+\frac{\partial f}{\partial \X}(\X_0) := \begin{bmatrix}
+		\frac{\partial f}{\partial x_{11}}(\x_0) & 	\frac{\partial f}{\partial x_{12}}(\x_0) & \cdots &	\frac{\partial f}{\partial x_{1n}}(\x_0) \\
+		\frac{\partial f}{\partial x_{21}}(\x_0) & 	\frac{\partial f}{\partial x_{22}}(\x_0) & \cdots &	\frac{\partial f}{\partial x_{2n}}(\x_0) \\
+		\vdots & \vdots &&\vdots  \\
+		\frac{\partial f}{\partial x_{m1}}(\x_0) & 	\frac{\partial f}{\partial x_{m2}}(\x_0) & \cdots &	\frac{\partial f}{\partial x_{mn}}(\x_0) \\
+\end{bmatrix}
+$$
+
+\end{definition}
+
+
+
+
+
+In the following part, we will give some examples of deritatives with respect to a function whose range is in $\R$. More precisely, suppose
+$$
+f : \R^{m \times n } \to \R,
+$$
+the derivative of $f$ with respect to $\X$ is given by
+$$
+\D f(\X_0)=tr((\frac{\D f}{\D \X}(\X_0))^T\D \X)
+$$
+\begin{definition}[Matrix2Matrix]
+Suppose $F$ is a map from $\R^{m \times n}$ to $\R^{p \times q}$, or
+$$
+F: A \mapsto [f_{ij}(A)]_{p \times q}.
+$$
+then $\frac{\D F}{\D A}$ is defined by
+$$
+\frac{\D F}{\D A}(A_0) = \begin{bmatrix}
+\frac{\D f_{11}}{\D A}(A_0) & \frac{\D f_{12}}{\D A}(A_0) & \cdots & \frac{\D f_{1q}}{\D A}(A_0) \\
+\frac{\D f_{21}}{\D A}(A_0) & \frac{\D f_{22}}{\D A}(A_0) & \cdots & \frac{\D f_{2q}}{\D A}(A_0) \\
+\vdots & \vdots && \vdots \\
+\frac{\D f_{p1}}{\D A}(A_0) & \frac{\D f_{p2}}{\D A}(A_0) & \cdots & \frac{\D f_{pq}}{\D A}(A_0) \\
+\end{bmatrix}
+$$
+\end{definition}
+
+\begin{example}[Gradient] \ \\
+Supppose $f:\R^n \to \R$, then 
+$$
+grad(f) = \bigtriangledown(f)=\frac{\D f}{\D \x^\prime} :=\begin{bmatrix}
+	\frac{\partial f}{\partial x_1} & \frac{\partial f}{\partial x_2} & \cdots & \frac{\partial f}{\partial x_n}.
+\end{bmatrix}
+$$
+\end{example}
+
+\begin{definition}[Jacobian] \ \\
+Suppose $f:\R^n \to \R^m$,and 
+$$
+\f: \x \mapsto (f_1(\x),\cdots,f_n(\x))^\prime,
+$$
+then
+$$
+Jacobian(\f) = \frac{\D \f}{\D \x^\prime}:= \begin{bmatrix}
+	\frac{\D f_1}{\D \x} & \frac{\D f_2}{\D \x} & \cdots & \frac{\D f_m}{\D \x}\end{bmatrix}=\begin{bmatrix}
+	\frac{\D f_1}{\D x_1} & \frac{\D f_2}{\D x_2} & \cdots & \frac{\D f_m}{\D \x}
+	\end{bmatrix}
+$$
+\end{definition}
+
+
+
+
+
+
+
+\begin{example}
+Suppose $f: \x \mapsto \x^\prime  \Omega \x$, where $\x \in \R^n$. Then 
+\begin{eqnarray*}
+	\D f(\x_0) &=& tr(\D f(\x_0)) \\
+	&=& tr((\D \x)^\prime\Omega \x_0 )+ tr(\x_0^\prime\Omega \D \x) \\
+	&=& tr((\Omega \x_0)^\prime\D \x )+tr(\x_0^\prime\Omega \D \x) \\
+	&=& tr(\x_0^\prime(\Omega^\prime+\Omega)\D \x).
+\end{eqnarray*}
+Thus we have
+$$
+\frac{\D f}{\D \x}(\x_0) = (\Omega+\Omega^\prime)\x_0
+$$
+\end{example}
+
+
+\begin{example}[OLS] \ \\
+Suppose $l: \R^{p+1} \to \R, \ \beta \mapsto (\X\beta-\mathbf y)^\prime (\X\beta-\mathbf y)$.
+Then we have
+\begin{eqnarray*}
+	\D(l)(\beta_0) &=& (\X \D \beta)^\prime(\X\beta_0-\mathbf y) + (\X \beta_0-\mathbf y)^\prime(\X \D \beta) \\
+	&=& (\X\beta_0-\mathbf y)^\prime (\X \D \beta) + (\X \beta_0-\mathbf y)^\prime(\X \D \beta) \\
+	&=& 2(\X\beta_0-\mathbf y)^\prime (\X \D \beta),
+\end{eqnarray*}
+and thus 
+$$
+\frac{\D l}{\D \beta}(\beta_0) =2\X^\prime(\X \beta_0-\mathbf y)=0
+$$
+implies 
+$$
+\beta_0= (\X^\prime \X)^{-1}\X^\prime \mathbf y
+$$
+\end{example}
+
+\begin{example}[OLS with multiple outputs] \ \\
+Suppose $Y \in \R^{N \times K}$, $X \in \R^{N \times (p+1)}$ and $B \in \R^{(p+1)\times K}$. Then the RSS is a map from $\R^{(p+1) \times K} \to \R$. More precisely, 
+
+\begin{eqnarray*}
+	RSS(B) &=& \sum_{k=1}^K \sum_{i=1}^{N}(y_{ik}-f_k(\x_i)) \\
+	&=& tr((Y-XB)^\prime(Y-XB)).
+\end{eqnarray*}
+Then we have
+$$
+\D RSS (B_0) = tr((-X\D B)^\prime(Y-XB)-(Y-XB)^\prime \D X B )
+$$
+\end{example}
+
+
+
+\begin{example}
+Suppose $\X_1,\cdots,\X_n$ are random samples from $N(\mu,\Sigma)$.
+Then
+$$
+l: \Sigma \mapsto \ln(|\Sigma|) + \frac{1}{n}\sum_{i=1}^n(\X_i-\bar \X)^\prime \Sigma^{-1} (\X_i - \bar \X)
+$$
+\begin{eqnarray*}
+	\D l(\Sigma_0) &=& tr(\Sigma_0^{-1}\D \Sigma)-\frac{1}{n}\sum_{i=1}^n(\X_i-\bar \X)^\prime \Sigma^{-1}_0 \D \Sigma \Sigma^{-1}_0 (\X_i - \bar \X) \\
+	&=& tr(\Sigma_0^{-1}\D \Sigma)-tr(\frac{1}{n}\sum_{i=1}^n(\X_i-\bar \X)^\prime \Sigma^{-1}_0 \D \Sigma \Sigma^{-1}_0 (\X_i - \bar \X)) \\
+	&=& tr(\Sigma_0^{-1}\D \Sigma) -tr(\Sigma_0^{-1}S \Sigma_0^{-1} \D \Sigma) \\
+	&=& tr(\Sigma_0^{-1}(I-S\Sigma_0^{-1})\D \Sigma).
+\end{eqnarray*}
+Then 
+$$
+\frac{\D l}{\D \Sigma}(\Sigma_0)=(I-S\Sigma_0^{-1})^\prime (\Sigma_0^{-1})^\prime=0
+$$
+implies $\Sigma_0 =S$.
+\end{example}
+
+\section{Applications}
+\subsection{Regression Models}
+\begin{example}[Ridge Regression] \ \\
+	123
+\end{example}
+
+1223123
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+

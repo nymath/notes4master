@@ -1,0 +1,162 @@
+\documentclass[12pt]{article}
+\usepackage{ctex}
+
+\usepackage[top=.8in, bottom=.8in, left=.8in, right=.8in]{geometry}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary[topaths]
+\newcount\mycount
+\usepackage{amssymb,latexsym}\usepackage{amsxtra}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{wasysym} 
+\usepackage{verbatim} 
+\usepackage{arcs}
+\usepackage{accents}
+\theoremstyle{definition}
+\usepackage[skins]{tcolorbox}
+\tcbuselibrary{skins,theorems}
+\tcbuselibrary{breakable}
+%---------------------- New-environment ----------------
+\newenvironment{Proof}
+{
+\vspace{-0.5cm}
+\paragraph{\textcolor[rgb]{0.1,0.8,0.9}{\textsf{Proof}}}
+}
+{\hfill$\square$\vspace{0.3cm}}
+
+\newenvironment{Remark}
+{
+\paragraph{\textcolor[rgb]{0.9,0.0,0.6}{\textsf{Remark}}}
+}
+
+%----------------------
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\urlstyle{same}
+
+
+%-----------------------------------------------------------------------------%
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem*{fact}{Fact}
+\newtheorem{remark}{Remark}
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+
+
+\newcommand{\df}{\displaystyle \frac} 
+\newcommand{\dlim}{\displaystyle \lim}
+\newcommand{\dint}{\displaystyle \int}
+\newcommand{\ra}{\rangle}
+\newcommand{\la}{\langle}
+\newcommand{\inner}[2]{{\langle #1,#2\rangle}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\xt}{\mathbf{x}^{\mathsf{T}}}
+\newcommand{\T}{{\mathsf{T}}}
+\newcommand{\abf}{\mathbf{a}}
+\newcommand{\abft}{\mathbf{a}^{\mathsf{T}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\E}{\mathrm{e}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\Y}{\mathbf{Y}}
+\newcommand{\f}{\mathbf{f}}
+\newcommand{\U}{\mathbf{u}}
+\newcommand{\D}{\mathrm{d}}
+\newcommand{\MCG}{\mathcal{G}}
+\newcommand{\MCF}{\mathcal{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\MCB}{\mathcal{B}}
+\newcommand{\MCT}{\mathcal{T}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\nullspace}{\mathrm{null}}
+\newcommand{\range}{\mathrm{range}}
+\newcommand{\Sum}[2]{{\sum_{#1}^{#2}}}
+\newcommand{\Union}[2]{{\bigcup_{#1}^{#2}}}
+\newcommand{\Intersection}[2]{{\bigcap_{#1}^{#2}}}
+
+\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
+\definecolor{my-violet}{rgb}{0.9,0.0,0.6}
+
+\newtcbtheorem[auto counter,number within=section]{stheorem}{Theorem}
+{
+	breakable,
+	fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
+	arc=3mm, ,separator sign = \ ,
+	theorem number and name,
+	colbacktitle=blue!25!white,colback=blue!8!white,colframe=black,coltitle=black,
+	toptitle=1.5mm,bottomtitle=1.5mm, 
+}{th}
+
+\newtcbtheorem[use counter from=stheorem]{sdefinition}%
+  {定义}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
+     arc=3mm, ,separator sign = \ ,
+     theorem number and name,
+     colbacktitle=yellow!50!white,colback=yellow!15!white,colframe=black,coltitle=black,
+     toptitle=1.5mm,bottomtitle=1.5mm,
+     }{def}
+     
+\newtcbtheorem[use counter from=stheorem]{sconclude}%
+  {}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
+     arc=3mm, ,separator sign = \ ,
+     theorem number and name,
+     colbacktitle=yellow!50!white,colback=yellow!15!white,colframe=black,coltitle=black,
+     toptitle=1.5mm,bottomtitle=1.5mm,
+     }{def}
+
+\newtcbtheorem[use counter from=stheorem]{scorollary}%
+  {定理}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
+     arc=3mm, ,separator sign = \ ,
+     theorem number and name,
+     colbacktitle=blue!25!white,colback=blue!8!white,colframe=black,coltitle=black,
+     toptitle=1.5mm,bottomtitle=1.5mm,
+     }{cr}
+     
+\newtcbtheorem[use counter from=stheorem]{sexample}%
+  {Example}{breakable,theorem style=plain,separator sign = \ ,
+  	fonttitle=\sffamily\normalsize,description font=\sf\itshape,
+  	colbacktitle=black!11!white,coltitle=black,colframe=black,
+    arc=0mm,outer arc=0mm,
+    toptitle=1.5mm,bottomtitle=1.5mm,left=1mm,right=1mm,
+	boxrule=0mm,toprule=0.5mm,bottomrule=.5mm,	rightrule=0mm,titlerule=0mm,top=0mm,
+	,colback=black!6!white}{ex}
+
+\newtcbtheorem[]{sremark}%
+  {Remark}{breakable,theorem style=plain,theorem name,
+  	description font=\sf\itshape,fontupper=\sffamily\normalsize, colbacktitle=green!11!white,coltitle=my-violet,colframe=black,colback=black!6!white,
+    arc=2mm,
+    left=1mm,right=1mm,
+	toprule=0.5mm,bottomrule=.5mm,rightrule=0.5mm,leftrule=.5mm,titlerule=0mm,
+	}{ex}
+\newtcbox{\boxred}{colback=red!5!white,
+colframe=red!75!black,on line,size=fbox}
+\newtcbox{\boxgrey}{on line,size=fbox}
+\newtcbox{\Ebox}{colback=red!5!white,
+colframe=red!75!black}
+\begin{document}
+	\title{知识点总结}
+	\author{NY}
+	\date{\today}
+	\maketitle
+	\abstract{无}
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	\newpage
+\section{空间的平面和直线}
+
+\end{document}

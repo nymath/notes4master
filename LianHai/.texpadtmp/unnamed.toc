@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}定义}{2}{section.1}%
+\contentsline {section}{\numberline {2}数据处理}{2}{section.2}%
+\contentsline {section}{\numberline {3}因子挖掘(因子库构建)}{2}{section.3}%
+\contentsline {section}{\numberline {4}因子检验}{2}{section.4}%
+\contentsline {section}{\numberline {5}alpha对冲}{2}{section.5}%
+\contentsline {section}{\numberline {6}研报阅读一}{2}{section.6}%
+\contentsline {subsection}{\numberline {6.1}单因子有效性检验}{2}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}单因子检验}{3}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {6.2.1}OLS v.s. Robust}{3}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\numberline {6.2.2}整体回归 v.s. 按月度回归}{3}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.3}相关系数的度量}{3}{subsubsection.6.2.3}%
+\contentsline {subsubsection}{\numberline {6.2.4}是否应当行业中性化}{3}{subsubsection.6.2.4}%
+\contentsline {subsubsection}{\numberline {6.2.5}同向显著比例，状态切换比例}{3}{subsubsection.6.2.5}%
