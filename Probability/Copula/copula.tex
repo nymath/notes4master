@@ -1,164 +1,14 @@
+\PassOptionsToPackage{table}{xcolor}
 \documentclass[12pt]{article}
-\usepackage{ctex}
-
-\usepackage[top=.8in, bottom=.8in, left=.8in, right=.8in]{geometry}
-\usepackage{amsmath}
-\usepackage{tikz}
-\usetikzlibrary[topaths]
-\newcount\mycount
-\usepackage{amssymb,latexsym}\usepackage{amsxtra}
-\usepackage{amsthm}
-\usepackage{graphicx}
-\usepackage{setspace}
-\onehalfspacing
-\usepackage{wasysym} 
-\usepackage{verbatim} 
-\usepackage{arcs}
-\usepackage{accents}
-\theoremstyle{definition}
-\usepackage[skins]{tcolorbox}
-\tcbuselibrary{skins,theorems}
-\tcbuselibrary{breakable}
-%---------------------- New-environment ----------------
-\newenvironment{Proof}
-{
-\vspace{-0.5cm}
-\paragraph{\textcolor[rgb]{0.1,0.8,0.9}{\textsf{Proof}}}
-}
-{\hfill$\square$\vspace{0.3cm}}
-
-\newenvironment{Remark}
-{
-\paragraph{\textcolor[rgb]{0.9,0.0,0.6}{\textsf{Remark}}}
-}
-
-%----------------------
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    pdftitle={Overleaf Example},
-    pdfpagemode=FullScreen,
-    }
-\urlstyle{same}
-
-
-%-----------------------------------------------------------------------------%
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}[section]
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem*{fact}{Fact}
-\newtheorem{remark}{Remark}
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-
-
-\newcommand{\df}{\displaystyle \frac} 
-\newcommand{\dlim}{\displaystyle \lim}
-\newcommand{\dint}{\displaystyle \int}
-\newcommand{\ra}{\rangle}
-\newcommand{\la}{\langle}
-\newcommand{\inner}[2]{{\langle #1,#2\rangle}}
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\xt}{\mathbf{x}^{\mathsf{T}}}
-\newcommand{\T}{{\mathsf{T}}}
-\newcommand{\abf}{\mathbf{a}}
-\newcommand{\abft}{\mathbf{a}^{\mathsf{T}}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\E}{\mathrm{e}}
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\X}{\mathbf{X}}
-\newcommand{\Y}{\mathbf{Y}}
-\newcommand{\f}{\mathbf{f}}
-\newcommand{\U}{\mathbf{u}}
-\newcommand{\D}{\mathrm{d}}
-\newcommand{\MCG}{\mathcal{G}}
-\newcommand{\MCF}{\mathcal{F}}
-\newcommand{\M}{\mathcal{M}}
-\newcommand{\MCB}{\mathcal{B}}
-\newcommand{\MCT}{\mathcal{T}}
-\newcommand{\LL}{\mathcal{L}}
-\newcommand{\nullspace}{\mathrm{null}}
-\newcommand{\range}{\mathrm{range}}
-\newcommand{\Sum}[2]{{\sum_{#1}^{#2}}}
-\newcommand{\Union}[2]{{\bigcup_{#1}^{#2}}}
-\newcommand{\Intersection}[2]{{\bigcap_{#1}^{#2}}}
-
-\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
-\definecolor{my-violet}{rgb}{0.9,0.0,0.6}
-
-\newtcbtheorem[auto counter,number within=section]{stheorem}{定理}
-{
-	breakable,
-	fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-	arc=3mm, ,separator sign = \ ,
-	theorem number and name,
-	colbacktitle=blue!25!white,colback=blue!8!white,colframe=black,coltitle=black,
-	toptitle=1.5mm,bottomtitle=1.5mm, 
-}{th}
-
-\newtcbtheorem[use counter from=stheorem]{sdefinition}%
-  {定义}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-     arc=3mm, ,separator sign = \ ,
-     theorem number and name,
-     colbacktitle=yellow!50!white,colback=yellow!15!white,colframe=black,coltitle=black,
-     toptitle=1.5mm,bottomtitle=1.5mm,
-     }{def}
-     
-\newtcbtheorem[use counter from=stheorem]{sconclude}%
-  {}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-     arc=3mm, ,separator sign = \ ,
-     theorem number and name,
-     colbacktitle=yellow!50!white,colback=yellow!15!white,colframe=black,coltitle=black,
-     toptitle=1.5mm,bottomtitle=1.5mm,
-     }{def}
-
-\newtcbtheorem[use counter from=stheorem]{scorollary}%
-  {定理}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-     arc=3mm, ,separator sign = \ ,
-     theorem number and name,
-     colbacktitle=blue!25!white,colback=blue!8!white,colframe=black,coltitle=black,
-     toptitle=1.5mm,bottomtitle=1.5mm,
-     }{cr}
-     
-\newtcbtheorem[use counter from=stheorem]{sexample}%
-  {Example}{breakable,theorem style=plain,separator sign = \ ,
-  	fonttitle=\sffamily\normalsize,description font=\sf\itshape,
-  	colbacktitle=black!11!white,coltitle=black,colframe=black,
-    arc=0mm,outer arc=0mm,
-    toptitle=1.5mm,bottomtitle=1.5mm,left=1mm,right=1mm,
-	boxrule=0mm,toprule=0.5mm,bottomrule=.5mm,	rightrule=0mm,titlerule=0mm,top=0mm,
-	,colback=black!6!white}{ex}
-
-\newtcbtheorem[]{sremark}%
-  {Remark}{breakable,theorem style=plain,theorem name,
-  	description font=\sf\itshape,fontupper=\sffamily\normalsize, colbacktitle=green!11!white,coltitle=my-violet,colframe=black,colback=black!6!white,
-    arc=2mm,
-    left=1mm,right=1mm,
-	toprule=0.5mm,bottomrule=.5mm,rightrule=0.5mm,leftrule=.5mm,titlerule=0mm,
-	}{ex}
-\newtcbox{\boxred}{colback=red!5!white,
-colframe=red!75!black,on line,size=fbox}
-\newtcbox{\boxgrey}{on line,size=fbox}
-\newtcbox{\Ebox}{colback=red!5!white,
-colframe=red!75!black}
-
-
-%\usepackage[backend=biber,style=gb7714-2015]{biblatex}
-%\setlength{\bibitemsep}{3bp}
-%\renewcommand*{\bibfont}{\zihao{5}\linespread{1.27}\selectfont}
-%\addbibresource{bibliography.bib}
+\include{template/pre_config.tex}
 
 
 %--------------------------------------------
 
 \begin{document}
-	\title{An Preliminary Introduction to Copula Theory}
+	\begin{figure}
+	\end{figure}
+	\title{A Preliminary Introduction to Copula Theory}
 	\author{Ny 
 	\footnote{我会不定期更新笔记，如果感兴趣的话，可以前往
 	\href{https://github.com/nymath/notes4master}{https://github.com/nymath/notes4master}获取最新版本。}\\
@@ -168,6 +18,7 @@ colframe=red!75!black}
 	\abstract{Copula的一些简要介绍\cite{czado2019analyzing} }
 	\tableofcontents
 	\listoffigures
+	\listoftables
 \newpage
 \section{导论}
 设想我们想要生成一个具有分布函数$F$的随机变量$X$，应该如何做呢？
@@ -358,19 +209,21 @@ $$
 \rho_p=2 \sin \left(\frac{\pi}{6} \rho_s\right) \text { and } \tau=\frac{2}{\pi} \arcsin (\rho)
 $$
 \end{stheorem}
-
-$$
-\begin{array}{l|l|l}
-\hline \text { Family } & \text { Kendall's } \tau & \text { Range of } \tau \\
-\hline \text { Gaussian } & \tau=\frac{2}{\pi} \arcsin (\rho) & {[-1,1]} \\
-\hline \mathrm{t} & \tau=\frac{2}{\pi} \arcsin (\rho) & {[-1,1]} \\
-\hline \text { Gumbel } & \tau=1-\frac{1}{\delta} & {[0,1]} \\
-\hline \text { Clayton } & \tau=\frac{\delta}{\delta+2} & {[0,1]} \\
-\hline \text { Frank } & \tau=1-\frac{4}{\delta}+4 \frac{D_1(\delta)}{\delta} \text { with } & {[-1,1]} \\
-& D_1(\delta)=\int_0^\delta \frac{x / \delta}{e^x-1} d x \text { (Debye function) } &
-\end{array}
-$$
-
+\begin{table}
+\centering
+\rowcolors{2}{my-red}{}
+\begin{tabular}{c c c}
+\rowcolor{my-darkred}
+\bfw{Family} & \bfw{Kendall's $\tau$} & \bfw{Range of $\tau$} \\
+\hline Gaussian & $\tau=\frac{2}{\pi} \arcsin (\rho)$ & {$[-1,1]$} \\
+$\mathrm{t}$ & $\tau=\frac{2}{\pi} \arcsin (\rho)$ & {$[-1,1]$} \\
+Gumbel & $\tau=1-\frac{1}{\delta}$ & {$[0,1]$} \\
+Clayton & $\tau=\frac{\delta}{\delta+2}$ & {$[0,1]$} \\
+Frank & $\tau=1-\frac{4}{\delta}+4 \frac{D_1(\delta)}{\delta}$ with & {$[-1,1]$} \\
+& $D_1(\delta)=\int_0^\delta \frac{x / \delta}{e^x-1} d x$ (Debye function) &
+\end{tabular}
+\caption{总体相关系数之间的关系}
+\end{table}
 \subsection{尾部相依性}
 \begin{sdefinition}{上尾相依系数}{}
 The upper tail dependence coefficient of a bivariate distribution with copula $C$ is defined as
@@ -385,27 +238,53 @@ $$
 \lambda_L=\lim _{t \rightarrow 0^{+}} P\left(X_2 \leq F_2^{-1}(t) \mid X_1 \leq F_1^{-1}(t)\right)=\lim _{t \rightarrow 0^{+}} \frac{C(t, t)}{t} .
 $$
 \end{sdefinition}
-$$
-\begin{array}{l|l|l}
-\hline \text { Family } & \text { Upper tail dependence } & \text { Lower tail dependence } \\
-\hline \text { Gaussian } & - & - \\
-\hline \mathrm{t} & 2 t_{\nu+1}\left(-\sqrt{\nu+1} \sqrt{\frac{1-\rho}{1+\rho}}\right) & 2 t_{\nu+1}\left(-\sqrt{\nu+1} \sqrt{\frac{1-\rho}{1+\rho}}\right) \\
-\hline \text { Gumbel } & 2-2^{1 / \delta} & - \\
-\hline \text { Clayton } & - & 2^{-1 / \delta} \\
-\hline \text { Frank } & - & - \\
-\hline \text { Joe } & 2-2^{1 / \delta} & - \\
-\hline \text { BB1 } & 2-2^{1 / \delta} & 2^{-1 /(\delta \theta)} \\
-\hline \text { BB7 } & 2-2^{1 / \theta} & 2^{-1 / \delta} \\
-\hline \text { Galambos } & 2^{-1 / \delta} & - \\
-\hline \text { BB5 } & 2-\left(2-2^{-1 / \delta}\right)^{1 / \theta} & - \\
-\hline \text { Tawn } & \left(\psi_1+\psi_2\right)-\left(\psi_1^\theta+\psi_2^\theta\right)^{1 / \theta} & - \\
-\hline \text { t-EV } & 2\left[1-T_{\nu+1}\left(z_{1 / 2}\right)\right] & - \\
-\hline \text { Hüsler-Reiss } & 2\left[1-\Phi\left(\frac{1}{\lambda}\right)\right] & - \\
-\hline \text { Marshall-Olkin } & \min \left\{\alpha_1, \alpha_2\right\} & - \\
+
+\begin{sremark}{}{}
+尾部相依系数的定义是条件概率的极限，自然也应该属于$[0,1]$。尾部相依系数用于衡量极端事件发生的相关性，比如股票跌停等。
+\end{sremark}
+
+\begin{table}[htb]
+\centering
+\rowcolors{2}{my-red}{}
+\begin{tabular}{c c c}
+\rowcolor{my-darkred} 
+\bfw{Family} &\bfw{Upper tail dependence } & \bfw{Lower tail dependence} \\
 \hline
-\end{array}
-$$
-\section{Bivariate Copula Classes}
+Gaussian & $-$ & $-$ \\
+$\mathrm{t}$ & $2 t_{\nu+1}\left(-\sqrt{\nu+1} \sqrt{\frac{1-\rho}{1+\rho}}\right)$ & $2 t_{\nu+1}\left(-\sqrt{\nu+1} \sqrt{\frac{1-\rho}{1+\rho}}\right)$ \\
+Gumbel & $2-2^{1 / \delta}$ & $-$ \\
+Clayton & $-$ & $2^{-1 / \delta}$ \\
+Frank & $-$ & $-$ \\
+Joe & $2-2^{1 / \delta}$ & $-$ \\
+BB1 & $2-2^{1 / \delta}$ & $2^{-1 /(\delta \theta)}$ \\
+BB7 & $2-2^{1 / \theta}$ & $2^{-1 / \delta}$ \\
+Galambos & $2^{-1 / \delta}$ & $-$ \\
+BB5 & $2-\left(2-2^{-1 / \delta}\right)^{1 / \theta}$ & $-$ \\
+Tawn & $\left(\psi_1+\psi_2\right)-\left(\psi_1^\theta+\psi_2^\theta\right)^{1 / \theta}$ & $-$ \\
+t-EV & $2\left[1-T_{\nu+1}\left(z_{1 / 2}\right)\right]$ & $-$ \\
+Hüsler-Reiss & $2\left[1-\Phi\left(\frac{1}{\lambda}\right)\right]$ & $-$ \\
+Marshall-Olkin & $\min \left\{\alpha_1, \alpha_2\right\}$ & $-$ \\
+\end{tabular}
+\caption{参数与尾部相依指数的关系}
+\end{table}
+
+
+\subsection{偏相关系数，条件相关系数}
+In the case of d variables, we consider the dependence of any pair of variables.Additionally, we are interested in the dependence of two variables after the effect ofthe remaining variables are removed (partial correlations) or the dependence whenwe fix the values of the remaining variables (conditional correlations). \par
+At first, we introduce some notations for convenience.
+\begin{itemize}
+	\item $I^d := \{1,2,\cdots,d\}$
+	\item $I^d_{-i} := I^d \backslash \{i\}$.
+\end{itemize}
+
+%The height of each row is set to 1.5 relative to its default height.
+
+
+
+
+
+
+\section{Bivariate(Explicit) Copula Classes}
 本节主要讨论两变量的copula，当然部分结论也适用于多变量的情形。
 \subsection{Gaussian Copula}
 本文介绍正态Copula的模拟，首先给出正态Copula的定义，
@@ -422,7 +301,6 @@ $$
 $$
 即可得到具有协方差矩阵$\Sigma$的正态Copula，这里有一个代码可以参考一下，见附件。
 这里选用了000651.SZ和601318.SH	的简单收益率进行分析，我们绘制了散点图，左图是正态Copula，边缘分布也为正态(实际上就是多元正态分布)，右图是正态Copula，边缘分布为Gamma分布，可以发现，利用正态Copula+Gamma分布能够更好的拟合极端情形。
-以然后我用正态Copula模拟
 
 \begin{figure}[htb]
 	\centering
@@ -430,10 +308,43 @@ $$
 	\caption{正态Copula下不同边缘分布的对比}
 \end{figure}
 
+\begin{algorithm}{Gaussian Copula}{}
+\begin{enumerate}
+	\item Sample i.i.d $(Z_1,\cdots,Z_p)$ from $N(0,1)$.
+	\item Using Cholesky Decomposition to $\Sigma=A A^\prime$ and obtain $[X_1,\cdots,X_p]=[Z_1,\cdots,Z_p]A^\prime$
+	\item Return $(U_1,\cdots,U_p) = (\varphi(X_1),\cdots,\varphi(X_p))$
+\end{enumerate}
+\end{algorithm}
+
+
 \subsection{t Copula}
+\begin{sdefinition}{t Copula}{}
+	Let $\Theta=\left\{(\nu, \Sigma): \nu \in(1, \infty), \Sigma \in \mathbb{R}^{p \times p}\right\}$ and let $t_\nu$ be a univariate $t$ distribution with $\nu$ degrees of freedom.
+The Student's $t$ copula can be written as
+$$
+C_{\Theta}\left(u_1, u_2, \ldots, u_m\right)=\boldsymbol{t}_{\nu, \Sigma}\left(t_\nu^{-1}\left(u_1\right), t_\nu^{-1}\left(u_2\right), \ldots, t_\nu^{-1}\left(u_m\right)\right)
+$$
+where $\boldsymbol{t}_{\nu, \Sigma}$ is the multivariate Student's $t$ distribution with a correlation matrix $\Sigma$ with $\nu$ degrees of freedom.
+\end{sdefinition}
+
+\begin{algorithm}{Simulate a t Copula}{}
+\begin{enumerate}
+	\item Generate $(Z_1,\cdots,Z_p)$ from $N_p(0,\Sigma)$.
+	\item Let $(X_1,\cdots,X_p)=(\frac{Z_1}{\sqrt{\frac{S}{\nu}}},\cdots,\frac{Z_p}{\sqrt{\frac{S}{\nu}}})$ where $S\sim \chi_v$ independent of $Z_i$.
+	\item Return $(U_1,\cdots,U_p)=(t_\nu(X_1),\cdots,t_\nu(X_p))$.
+\end{enumerate}
+
+\end{algorithm}
+
+
+
+
+
+
 \section{Archimedean Copulas}
+In practice, Archimedean copulas are popular because they allow modeling dependence in arbitrarily high dimensions with \boxred{only one parameter}, governing the strength of dependence. In addition, there exists a close-form expresssion of the relationship between this parameter and \boxred{kendall tau}.
 \begin{sdefinition}{Archimedean Copula}{}
-Suppose $\Omega = \{\varphi:[0,1] \to [0,\infty) | \text{$\varphi$ is a continuous,strictly monotone decreasing,} \\ \text{, and convex function.} \}$ Let $\varphi \in \Omega$, then 
+Suppose $\Omega = \{\varphi:[0,1] \to [0,\infty) | \text{$\varphi$ is a continuous,strictly monotone decreasing,} \\ \text{, and convex function with $\varphi(1)=0$.} \}$ Let $\varphi \in \Omega$, then 
 $$
 C(u_1,\cdots,u_p) = \varphi^{[-1]}(\varphi(u_1)+\cdots+\varphi(u_p))
 $$
@@ -444,12 +355,74 @@ $$
 \end{sdefinition}
 
 
- 
 
+\subsection{Simple Archimedean Copula}
+
+%\begin{tabular}{|l|c|c|c|}
+%\hline Name & Clayton & Gumbel & Frank \\
+%\hline Generator & $\phi(t)=\left(t^{-\theta}-1\right)$ & $\phi(t)=(-\ln t)^\theta$ & $\phi(t)=-\ln t \frac{e^{-\theta t}-1}{e^{-\theta}-1}$ \\
+%\hline Inverse Generator & $\phi^{-1}(s)=(1+s)^{-\frac{1}{\theta}}$ & $\left.\phi^{-1}(s)=e^{-s^{\frac{1}{\theta}}}\right)$ & $\phi^{-1}(s)=-\frac{1}{\theta} \ln \left[1-e^{-s}(1-\right.$ \\
+%\hline Parameter & $\theta>0$ & $\theta \geq 1$ & $\theta \in \mathbb{R} /\{0\}$ \\
+%\hline Y-Distribution & $G a m m a\left(\frac{1}{\theta}, 1\right)$ & $\alpha=\frac{1}{\theta}, \beta=1, \gamma=\left(\cos \left(\frac{\pi}{2 \theta}\right)\right)^\theta, \delta=0$ & Logarithmic series on $\mathbb{N}^{+}$ with $\alpha=\left(1-e^{-\theta}\right)$ \\
+%\hline Density of Y & $\frac{1}{\Gamma\left(\frac{1}{\theta}\right)} e^{-y} y \frac{(1-\theta)}{\theta}$ & Stable $(\alpha, \beta, \gamma, \delta)$ & $\mathrm{P}[Y=k]=\frac{-1}{\ln (1-\alpha)} \frac{\alpha^k}{k}$ \\
+%\hline
+%\end{tabular}
+
+
+\begin{table}[htb]
+\centering
+\rowcolors{2}{my-red}{}
+\resizebox{1.1\columnwidth}{!}{
+\begin{tabular}{c c c c c}
+\rowcolor{my-darkred}
+ \bfw{Name of copula}  & \bfw{ Bivariate copula $C_\theta(u, v)$} & \bfw{parameter $\theta$} & \bfw{generator $\psi_\theta(t)$} & \bfw{ generator inverse $\psi_\theta^{-1}(t)$} \\
+\hline
+Ali-Mikhail-Haq ${ }$ & $\frac{u v}{1-\theta(1-u)(1-v)}$ & $\theta \in[-1,1]$ & $\log \left[\frac{1-\theta(1-t)}{t}\right]$ & $\frac{1-\theta}{\exp (t)-\theta}$ \\
+ Clayton  & {$\left[\max \left\{u^{-\theta}+v^{-\theta}-1 ; 0\right\}\right]^{-1 / \theta}$} & $\theta \in[-1, \infty) \backslash\{0\}$ & $\frac{1}{\theta}\left(t^{-\theta}-1\right)$ & $(1+\theta t)^{-1 / \theta}$ \\
+Frank & $-\frac{1}{\theta} \log \left[1+\frac{(\exp (-\theta u)-1)(\exp (-\theta v)-1)}{\exp (-\theta)-1}\right]$ & $\theta \in \mathbb{R} \backslash\{0\}$ & $-\log \left(\frac{\exp (-\theta t)-1}{\exp (-\theta)-1}\right)$ & $-\frac{1}{\theta} \log (1+\exp (-t)(\exp (-\theta)-1))$ \\
+Gumbel & $\exp \left[-\left((-\log (u))^\theta+(-\log (v))^\theta\right)^{1 / \theta}\right]$ & $\theta \in[1, \infty)$ & $(-\log (t))^\theta$ & $\exp \left(-t^{1 / \theta}\right)$ \\
+ Independence & $u v$ & & $-\log (t)$ & $\exp (-t)$ \\
+ Joe & $1-\left[(1-u)^\theta+(1-v)^\theta-(1-u)^\theta(1-v)^\theta\right]^{1 / \theta}$ & $\theta \in[1, \infty)$ & $-\log \left(1-(1-t)^\theta\right)$ & $1-(1-\exp (-t))^{1 / \theta}$ \\
+ 
+\end{tabular}
+}
+\caption{Archimedean Generator}
+\end{table}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[scale=0.3]{figure/Archimedean.jpeg}
+	\caption{Top left: Clayton, top right: Gumbel, bottom left: Frank, bottom right: Joe.}
+\end{figure}
+
+
+\subsection{Laplace-Lebesgue-Stieltjes Transform}
+\begin{sdefinition}{Laplace-Stieltjes Transform}{}
+Suppose $F:[0,\infty)\to[0,1]$ is increasing and right continuous, then the Laplace-Stielftjes Transform of $F$ is defined by 
+$$
+LS(F): s\mapsto \int_{\R^+} e^{-sx}\D F(x).
+$$
+Clearly, $LS(F): [0,\infty) \to [0,1]$ is a decreasing function with $LS(F)(0)=1$ and thus an inverse of a Archimedean Generator.
+\end{sdefinition}
+ 
+\subsection{Nested Archimedean Copula}
+
+\subsection{Simulations}
+\begin{algorithm}{Marshall and Olkin}{}
+\begin{enumerate}
+	\item Sample $V$ from $F = LS^{-1}(\psi^{-1})$
+	\item Sample i.i.d $E_1,\cdots, E_p$ from $Exp(1)$, independent of $V$.
+	\item Return $U = (\psi^{-1}(\frac{E_1}{V}),\cdots,\psi^{-1}(\frac{E_p}{V}))$
+\end{enumerate} 
+	
+\end{algorithm}
 
 %\bibliographystyle{siam}
-%\bibliography{bibliography.bib}
+%\bibliography{ref.bib}
 %\printbibliography[heading = bibintoc]
+
+\section{Applications in Assurance}
+\section{Applications in Derivatives}
 
 
 \end{document}
