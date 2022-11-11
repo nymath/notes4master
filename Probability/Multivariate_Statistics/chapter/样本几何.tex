@@ -1,0 +1,52 @@
+\section{样本几何}
+弹到坐标，必须得提到基，我们把坐标定义为一个矩阵。
+\begin{sdefinition}{坐标}{}
+Suppose $x \in \R^n$, then the matrix of $x$ is defined by
+$$
+\M(x,e) = \begin{bmatrix}
+	x_1 \\
+	x_2 \\
+	\vdots \\
+	x_n
+\end{bmatrix}
+$$
+where $e$ is the standard orthonormal basis of $\R^n$.
+
+\end{sdefinition}
+
+\begin{stheorem}{坐标变换}{}
+Suppose $x \in \R^n$, $e,\nu$ are basis of $\R^n$, then
+$$
+\M(x,e) = \M(I,\nu,e) \M(x,\nu)
+$$
+or equivalently,
+$$
+\M(x,\nu) = \M(I,e,\nu) \M(x,e)
+$$
+\end{stheorem}
+
+\begin{sdefinition}{}{}
+$$
+\M(I,e,\nu) = \frac{\partial \nu}{\partial x} 
+$$	
+\end{sdefinition}
+
+\begin{sexample}{}{}
+$$
+\begin{bmatrix}
+	u \\
+	v \\
+	w 
+\end{bmatrix}
+= A \begin{bmatrix}
+	x \\
+	y \\
+	z
+\end{bmatrix}
+$$
+假定样本点为P,p在e下的坐标为x，y，z，那么p在v在的坐标为(u,v,w),其中v可以通过$A^{-1}e$得到
+\end{sexample}
+
+\begin{sremark}{}{}
+可能你发现了，我在说基的时候，只写了$e$, $\nu$. 思考一下我为什么写？(family是映射，不是集合)
+\end{sremark}

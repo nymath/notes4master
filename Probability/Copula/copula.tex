@@ -1,6 +1,6 @@
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[12pt]{article}
-\include{template/pre_config.tex}
+\include{template/pre_config}
 
 
 %--------------------------------------------
@@ -189,7 +189,11 @@ $$
 $\frac{r_{i1}}{n}$看作均匀变量$U_1$的一次观测，自然上式就成为了$U_1,U_2$的Pearson rho的一个估计。	
 \end{sremark}
 
-
+\begin{stheorem}{}{}
+$$
+\rho_s =12\int_{\R^2} C(u, v)-uv \ \D u \D v  
+$$
+\end{stheorem}
 
 \subsubsection{Kendall tau}
 \begin{sdefinition}{总体相关系数-kendall-tau}{}
@@ -201,6 +205,17 @@ where $\left(X_{11}, X_{12}\right)$ and $\left(X_{21}, X_{22}\right)$ are indepe
 \end{sdefinition}
 kendall tau的系数估计有点复杂，在实际中，由于部分Copula的参数和Kendall相关系数有一个函数，所有我们
 可以通过估计Kendall tau系数进而得到Copula参数的估计值。
+\begin{stheorem}{}{}
+$$
+\tau =4\int_{\R^2} C(u,v) \ \D C(u, v)  -1
+$$
+\end{stheorem}
+
+
+
+
+
+
 
 \subsection{各个相关系数之间的关系}
 \begin{stheorem}{关联}{}
@@ -420,7 +435,7 @@ Clearly, $LS(F): [0,\infty) \to [0,1]$ is a decreasing function with $LS(F)(0)=1
 %\bibliographystyle{siam}
 %\bibliography{ref.bib}
 %\printbibliography[heading = bibintoc]
-
+\section{test}
 \section{Applications in Assurance}
 \section{Applications in Derivatives}
 

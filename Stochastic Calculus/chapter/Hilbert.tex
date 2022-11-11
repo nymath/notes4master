@@ -1,0 +1,449 @@
+\chapter{Hilbert Spaces}
+Normed vector spaces and Banach spaces, which were introduced in Chapter 1 , capture the notion of distance. In this chapter we introduce inner product spaces, which capture the notion of angle. The concept of orthogonality, which corresponds to right angles in the familiar context of $\mathbf{R}^2$ or $\mathbf{R}^3$, plays a particularly important role in inner product spaces.
+
+Just as a Banach space is defined to be a normed vector space in which every Cauchy sequence converges, a Hilbert space is defined to be an inner product space that is a Banach space. Hilbert spaces are named in honor of David Hilbert (1862-1943), who helped develop parts of the theory in the early twentieth century.
+
+In this chapter, we will see a clean description of the bounded linear functionals on a Hilbert space. We will also see that every Hilbert space has an orthonormal basis, which make Hilbert spaces look much like standard Euclidean spaces but with infinite sums replacing finite sums.
+
+\newpage
+\section{Inner product space}
+\begin{sdefinition}{Inner Product on a vector space}{}
+An inner product is a function from $V \times V$ to $\F$ and has the following properties.
+
+
+\begin{itemize}
+	\item Positivity: $\inner{f}{f}\in[0,\infty)$ for all $f\in V$.
+	\item Definiteness: $\inner{f}{f}=0$ implies $f=0$.
+	\item Linearity at first slot:
+	\begin{eqnarray*}
+		\inner{f+g}{h}&=&\inner{f}{h}+\inner{g}{h} \\
+		\inner{af}{h} &=& a\inner{f}{h}
+	\end{eqnarray*}
+	\item Conjugate symmetry:
+	$$
+	\inner{f}{g} = \overline{\inner{g}{h}}
+	$$
+\end{itemize}
+$(V,\inner{}{})$ is called an inner product space.
+\end{sdefinition}
+
+\begin{stheorem}{Properties of inner product}{}
+	\begin{enumerate}
+		\item $\inner{0}{g} = \inner{g}{0}=0$.
+		\item $\inner{f}{g+h}=\inner{f}{g}+\inner{f}{h}$.
+		\item $\inner{f}{ag}=\overline{a}\inner{f}{g}.$
+	\end{enumerate}
+\end{stheorem}
+Define $\Vert f\Vert = \sqrt{\inner{f}{f}}$. and we say two elements of an inner product space are called orthogonal if their inner product equals 0.
+\begin{stheorem}{Pythagorean Theorem/Cauchy-Schwarz/Triangle Inequality}{}
+\begin{enumerate}
+	\item $\Vert f+g \Vert^2=\Vert f\Vert^2 + \Vert g \vert^2$ iff $\inner{f}{g}=0$.
+	\item $|\inner{f}{g}|\leq \Vert f \Vert \Vert g \Vert$. 
+	\item $|\Vert f+g \Vert |\leq \Vert f\Vert + \Vert g \Vert$.
+	\item $\Vert f+g \Vert^2+\Vert f-g \Vert^2=2\Vert f\Vert^2 + 2\Vert g \Vert^2$.   
+\end{enumerate}
+\end{stheorem}
+A direact consequence is that $(V,\Vert \Vert)$ is a normed vector space. And the distance of two elements of $V$ is defined by $d(f,g)=\Vert f-g\Vert$. 
+
+\begin{sdefinition}{Distance from a point to a set}{}
+Suppose $f\in V$ and $U \subset V$. Then the distance between $f$ and $U$ is defined by
+$$
+d(f,U) := \inf\{d(f,g): g\in U \}. 
+$$
+Note also that $d(f,U)=0$ if and only if $f\in \overline{U}$	.
+\end{sdefinition}
+\begin{Proof} Recall that $\overline U =\{f\in V: B(f,\varepsilon)\cap E \neq \emptyset \ \text{for all} \ \varepsilon >0.\}$
+Then
+\begin{eqnarray*}
+	d(f,U)=0 &\implies & \forall \varepsilon >0 ,\exists g\in U, s.t. \Vert f-g\Vert < \varepsilon \\
+	& \implies & \forall \varepsilon >0, B(f,\varepsilon)\cap E\neq \emptyset. \\
+	& \implies & f \in \overline U.
+\end{eqnarray*}
+And the other direction trivivally holds. 
+\end{Proof}
+
+\begin{sexample}{}{}
+Suppose $T$ is a positive self-adjoint operator on $V=\R^n$, which implies the matrix of $T$ is symmetric and positive defined. Then $d(u,v)=\inner{Tu}{v}=\nu^T\M(T)u$ is a distance on $V$.	
+\end{sexample}
+
+\begin{sdefinition}{}{}
+A complete inner product space is called a Hilbert space.	
+\end{sdefinition}
+
+\begin{stheorem}{Distance to a closed convex set is attained in a Hilbert space}{}
+Suppose $V$ is a Hilbert space, $U$ is a non-empty closed convex set in $V$. Then there exists a unique $g\in U$ such that 
+$$
+\Vert f-g \Vert = d(f,U)
+$$
+\end{stheorem}
+\begin{Proof}
+By defition, there exists $g_n$ such that 
+$$
+\lim_{n \to \infty} \Vert f-g_n \Vert= d(f,U)
+$$
+Then for all m,n, we have 
+\begin{eqnarray*}
+	\Vert g_m-g_n\Vert^2 &=& \Vert (f-g_n)-(f-g_m)\Vert^2 \\
+	&=& 2\Vert f-g_n\Vert^2 + 2\Vert f-g_m\Vert^2 - \Vert 2f-g_m-g_n\Vert^2 \\
+	&=& 2\Vert f-g_n\Vert^2 + 2\Vert f-g_m\Vert^2 - 4 \Vert f-(g_m+g_n)/2\Vert^2 \\
+	&\leq &  2\Vert f-g_n\Vert^2 + 2\Vert f-g_m\Vert^2 - 4d(f,U). 
+\end{eqnarray*}
+This implies $g_n$ is a Cauchy sequence in $V$, and thus exists $g\in V$ such that 
+$$
+\lim_{n \to \infty}|\vert g_n -g\Vert| = 0,
+$$
+since $V$ is complete. Also note that $U$ is closed, we have $g\in U$. This implies $d(f-g)\geq d(f,U)$. On the other hand,
+$$
+d(f,g) \leq d(f,g_n)+d(g_n,g),
+$$
+where the right side converges to $d(f,U)$. As for the uniqueness,..
+\end{Proof}
+\section{Orthogonality}
+\begin{sdefinition}{Orthogonal Projection}{}
+Suppose $U$ is a non-empty closed convex subset of a Hilbert space $V$. Then orthogonal projection of $V$ onto $U$ is the function
+$$
+P_U: V \to U, \ f\mapsto g. 
+$$
+Where $g$ is the only point that satisfies $d(f,g)=d(f,U)$. Theorem 3.3 admits our definition makes sense.
+\end{sdefinition}
+\begin{sremark}{}{}
+\begin{itemize}
+	\item $P_U(f)=f$ iff $f\in U$.
+	\item $P_U \circ P_U$ = $P_U$.
+	\item Suppose $W$ is closed subspace and $W \subset U$,then $P_W=P_W \circ P_U$.
+\end{itemize}
+\end{sremark}
+
+\begin{sdefinition}{Orthogonal Complement}{}
+Suppose $U$ is a subset of an inner product space. Then
+$$
+U^{\perp} := \{ h\in V:h \perp U\}
+$$
+Note that $h \perp U$ implies $f\perp g $ for all $g\in U$.
+\end{sdefinition}
+
+\begin{stheorem}{}{}
+Suppose $U$ is a closed subspace(or complete subspace) of a Hilbert space $V$. Then \begin{enumerate}
+	\item $f-P_Uf$ is orthogonal to all $g \in U$.
+	\item If $h \in U$ and $f-h \in U^\perp$, then $h=P_Uf$
+	\item $P_U: V \to U$ is a bounded linear map. 
+	\item $\Vert P_Uf\Vert\leq \Vert f\Vert$.
+\end{enumerate}	
+\end{stheorem}
+\begin{Proof}
+Suppose $g\in U$ and $a=-t\inner{f-P_Uf}{g}$ where $t>0$. Then we have
+\begin{eqnarray*}
+	\Vert f-P_Uf\Vert^2 &\leq & \Vert f - P_Uf +a g\Vert^2 \\
+	&=& \Vert f-P_Uf \Vert^2 + |a|^2\Vert g\Vert^2 + 2\mathrm{Re} \overline{a} \inner{f-P_Uf}{g}.
+\end{eqnarray*}
+The inequality implies 
+$$
+2|\inner{f-P_u}{g}|^2 \leq t |\inner{f-P_u}{g}|^2 \Vert g\Vert^2.
+$$
+Thus $\inner{f-P_Uf}{g}=0$. \\
+(2) Suppose $g \in U$. Since $U$ is a vector space, $g-h \in U$ and $\inner{f-h}{g-h}=0$, thus the triangle inequality implies 
+\begin{eqnarray*}
+	\Vert f -h \Vert^2 &\leq&  \Vert f -h \Vert^2 + \Vert h-g \Vert^2 \\
+	&=& \Vert f-g \Vert^2.
+\end{eqnarray*}
+The inequality suggests that $h$ is the closest point with respect to $f$ in $U$ and thus $h=P_uf$. \\
+(3) Suppose $f_1,f_2 \in V$. Since
+$$
+\inner{f_1+f_2-P_Uf_1-P_Uf_2}{g}=0
+$$ 
+for all $g \in U$. Now (2) implies that $P_U(f_1+f_2)=P_Uf_1+P_Uf_2$. \\
+(4) At last, suppose $f=P_Uf + h$.
+$$
+\inner{P_Uf}{h} = \inner{P_Uf}{f-P_Uf}=0,
+$$
+since $P_Uf\in U$ and $f-P_Uf \perp U$. Thus 
+$$
+\Vert f\Vert^2 = \Vert P_Uf \Vert^2 + \Vert h \Vert^2. 
+$$
+\end{Proof}
+
+\begin{stheorem}{Properties of Orthogonal Complement}{}
+\begin{enumerate}
+	\item $U^\perp$ is a subspace of $V$.
+	\item $U \cap U^\perp \subset \{0\}$.
+	\item $W \subset U \implies U^\perp \subset W^\perp$.
+	\item $(\overline U)^\perp=U^\perp$.
+	\item $U \subset (U^\perp)^\perp$.
+\end{enumerate}
+\end{stheorem}
+\begin{Proof}
+123
+\end{Proof}
+
+\begin{stheorem}{Orthogonal Decomposition}{}
+Suppose $U$ is a closed subspace of a Hilbert space $V$(and thus complete). Then 
+$$
+V = U \oplus U^\perp.
+$$
+In other words, $f\in V$ can can be uniquely written in the form
+$$
+f = g + h, \ g \in U,\ h \in U^\perp. 
+$$
+\end{stheorem}
+\begin{stheorem}{Range and Null space of Orthogonal projections}{}
+Suppose $U$ is a closed subspace of a Hilbert space $V$. Then
+\begin{itemize}
+	\item $\mathrm{range}P_U=U$ and $\mathrm{P_U}=U^\perp$.
+	\item $\mathrm{range}P_{U^\perp} $
+\end{itemize}
+
+\end{stheorem}
+\begin{stheorem}{Riesz Reprentation Theorem I}{Riesz Reprentation Theorem}
+Suppose $\varphi \in B(V,\F)$ where $V$ is a Hilbert space. Then there exists a unique $h \in V$ such that 
+$$
+\varphi(f) = \inner{f}{h}
+$$
+for all $f \in V$. Moreover, $\Vert \varphi \Vert = \Vert h \Vert$.
+\end{stheorem}
+\begin{Proof}
+Since $\nullspace \varphi \subset \{h\}^\perp$, which implies ${h}\subset (\nullspace \varphi)^\perp$. Thus we begin our proof with $(\nullspace \varphi)^\perp$. First suppose $\varphi \neq 0$, we claim that $\nullspace \varphi$ is a closed subspace of $V$ and $\nullspace \varphi \neq V$ since $\varphi$ is continuous.
+Thus there exists $g \in (\nullspace \varphi)^\perp$ with $\Vert g\Vert=1$. Let
+$$
+h = \overline{\varphi(g)}g. 
+$$
+with $\Vert h\Vert^2=\inner{h}{h}=|\varphi(g)|^2$. Thus 
+$$
+\varphi(h) = |\varphi(g)|^2 = \Vert h \Vert^2.
+$$
+Now suppose $f \in V$,
+\begin{eqnarray*}
+	\inner{f}{h} &=& \inner{f-\frac{\varphi(f)}{\Vert h\Vert^2}h}{h} + \inner{\frac{\varphi(f)}{\Vert h\Vert^2}h}{h} \\
+	&=& \inner{\frac{\varphi(f)}{\Vert h\Vert^2}h}{h} \\
+	&=& \varphi(f),
+\end{eqnarray*}
+where the equality holds because $f-\frac{\varphi(f)}{\Vert h\Vert^2}h \in \nullspace \varphi$. \par
+We have now proved the existence of $h$. To prove the uniqueness, suppose $\tilde h\in V$ has the same property. Then 
+$$
+\inner{h-\tilde h}{h - \tilde h}=\inner{h-\tilde h}{h}-\inner{h-\tilde h}{h}=\varphi(h-\tilde h)-\varphi(h-\tilde h)=0,
+$$
+which implies that $h=\tilde h$, which proves the uniqueness. \par
+The Cauchy-Schwarz inequality implies 
+$$
+|\varphi(f)| = |\inner{f}{h}| \leq \Vert f\Vert \Vert h\Vert,
+$$
+and hence $\Vert \varphi \Vert \leq\Vert h \Vert$. On the other hand, 
+$$
+\varphi(h)=\Vert h\Vert^2, 
+$$
+we also have $\Vert \varphi \Vert \geq \Vert h \Vert$.
+\end{Proof}
+
+
+\begin{stheorem}{Riesz Reprentation Theorem II}{Riesz Reprentation Theorem II}
+Suppose $\varphi \in B(V,\F)$ where $V$ is a Hilbert space. Let 
+$$
+h = \Sum{k\in \Gamma}{} \overline{\varphi(e_k)}e_k.
+$$
+Then 
+$$
+\varphi(f) = \inner{f}{h}
+$$
+for all $f\in V$. Furthermore, $\Vert \varphi \Vert=(\Sum{k\in \Gamma}{}|\varphi(e_k)|^2  )^{\frac{1}{2}}$.
+\end{stheorem}
+\begin{Proof}
+	123
+\end{Proof}
+
+
+
+
+
+
+\section{Orthonormal Bases} \ \\
+
+\begin{definition}
+	$\{e_k\}_{k \in \Gamma}$ is called an orthonormal family if 
+$$
+\inner{e_i}{e_j}=\delta_{ij}, i,j \in \Gamma.
+$$
+\end{definition}
+\begin{definition}[Unordered sum] \ \\
+	Suppose $\{f_k\}_{k \in \Gamma}$ is a family in a normed vector space $V$. The unordered sum $\sum_{k \in \Gamma}$ is called convergent if $\exists g \in V$, $\forall \varepsilon >0$, $\exists \Omega \subset \Gamma$, for all $\Omega \subset \Omega^\prime \subset \Gamma$, we have
+	$$
+	\Vert g - \sum_{k\in \Omega^\prime}f_k \Vert < \varepsilon
+	$$
+If this happens, we set $\sum_{s\in \Gamma}f_k = g$. Moreover, if $\forall N >0$, $\exists \Omega \subset \Gamma$, for all $\Omega \subset \Omega^\prime \subset \Gamma$, we have
+$$
+\Vert \sum_{k\in \Omega^\prime}f_k \Vert > N
+$$
+We we say $\sum_{s\in \Gamma}f_k$ 'converges' to infinity.
+\end{definition}
+
+\begin{sexample}{Unordered sum in $\R$}{}
+	\begin{enumerate}
+		\item $\{a_k\}_{k \in \Gamma}$ where $a_k$ is nonnegative.
+$$
+\sum_{k \in \Gamma}a_k = \sup\{\sum_{k \in \Omega}a_k: \Omega \ \text{is a finite subset of} \ \Gamma \}.
+$$
+If $\sup\{\sum_{k \in \Omega}a_k: \Omega \ \text{is a finite subset of} \ \Gamma \} < \infty$, then $\{a_k\}_{k \in \Gamma}$ is called convergent.
+		\item General case.
+$$
+\sum_{k \in \Gamma}a_k \ \text{converges} \ \iff \sum_{k \in \Gamma}|a_k| < \infty.
+$$
+	\end{enumerate}
+\end{sexample}
+
+\begin{stheorem}{}{}
+Suppose $V$ is a Hilbert space, then the inner product defined on $V$ and the unordered sum operation are commutitative if the unordered sum makes sense.
+\end{stheorem}
+
+
+
+
+
+
+
+
+\begin{stheorem}{Linear combination of an orthonormal family}
+Suppose $\{e_k\}_{k \in \Gamma}$ is an orthonormal family in a Hilbert space $V$, and also suppose $\{a_k\}_{k \in \Gamma}$ is a family in $\F$. Then
+\begin{itemize}
+	\item $\sum_{k \in \Gamma}a_ke_k \ converges$ $\iff (\sum_{k \in \Gamma}|a_k|^2)^{\frac{1}{2}}<\infty$ 
+	\item Furthermore, if $\sum_{k \in \Gamma}a_ke_k \ converges$, then $\Vert \sum_{k \in \Gamma}a_ke_k\Vert^2=\sum_{k \in \Gamma}|a_k|^2$.
+\end{itemize} 
+\end{stheorem}
+\begin{Proof}
+First suppose $\sum_{k \in \Gamma}a_ke_k=g$. Then for all $\varepsilon > 0$, there exists $\Omega$ such that for all $\Omega \subset \Omega^\prime\subset \Gamma$ holds
+$$
+\Vert g - \sum_{k\in \Omega^\prime}a_ke_k\Vert < \epsilon.
+$$
+This implies 
+$$
+\Vert g \Vert - \varepsilon < \Vert \sum_{k \in \Omega^\prime}a_ke_k\Vert < \Vert g\Vert + \epsilon.
+$$
+You should note that $\Vert \sum_{k \in \Omega^\prime}a_ke_k\Vert=(\sum_{k\in \Omega^\prime}|a_k^2|)^{\frac{1}{2}}$, since $\Omega^\prime$ is a finite set. This inquality now implies that $\sum_{k\in \Gamma}|a_k^2|$ is convergent to $\Vert g \Vert^2$, in other words,
+$$
+\Vert \sum_{k \in \Gamma} a_ke_k \Vert = \Vert g\Vert= (\sum_{k\in \Gamma}|a_k^2|)^\frac{1}{2}.
+$$
+To prove the other direction of (i), now suppose $\sum_{k\in \Gamma}|a_k^2|<\infty$. Define
+$$
+\sum_{\Gamma \backslash \Omega}|a_k|^2 := \sum_{k \in \Gamma}|a_k|^2 - \sum_{k \in \Omega}|a_k|^2, \ \text{where Omega is a finite set.}
+$$
+The definition above makes sense, as you should verify. By definition, there exists an incresing set $\Omega_1\subset \Omega_2 \subset \cdots,$ such that 
+$$
+\sum_{k \in \Gamma \backslash \Omega_m} |a_k|^2 < \frac{1}{m^2}.
+$$
+Set $g_m = \sum{j\in \Omega_m}a_je_j$, then
+$$
+\Vert g_n -g_m \Vert ^2 = \sum_{\Omega_n \backslash \Omega_m}|a_j|^2<\frac{1}{m^2}.(why?)
+$$
+This implies that $g_n$ is a Cauchy sequence in $V$ and thus converges to some element $g \in V$. To show that $\sum_{k \in \Gamma}a_ke_k=g$, suppose $\Omega_m \subset \Omega^\prime $.
+\begin{eqnarray*}
+	\Vert g - \sum_{k \in \Omega^\prime}a_ke_k\Vert &\leq& \Vert g-g_m\Vert + \Vert g_m-\sum_{j \in \Omega^\prime}a_je_j \Vert \\
+	&\leq & \frac{1}{m} + \frac{1}{m}.
+\end{eqnarray*}
+\end{Proof}
+
+\begin{stheorem}{Bassel's inequility}
+Suppose $\{e_k\}_{k \in \Gamma}$ is an orthonormal family in an inner product space $V$ and $f \in V$. Then we have
+$$
+\sum_{k\in \Gamma}|\inner{f}{e_k}|^2 \leq \Vert f \Vert^2,
+$$
+and thus $ \sum_{k \in \Gamma} \inner{f}{e_k}e_k$ converges.
+\end{stheorem}
+\begin{Proof}
+Decomposing $f$ as follows:
+\begin{eqnarray*}
+	f &=& \sum_{j \in \Omega}\inner{f}{e_j}e_j + (f-\sum_{j \in \Omega}\inner{f}{e_j}e_j),
+\end{eqnarray*}
+where  the first part in the right side is orthogonal to the second part, as you should verify.
+Applying the Pythagorean Theorem to the equation above and we obtain
+\begin{eqnarray*}
+\Vert f\Vert^2 &=& \Vert\sum_{j \in \Omega}\inner{f}{e_j}e_j \Vert^2 + \Vert(f-\sum_{j \in \Omega}\inner{f}{e_j}e_j) \Vert^2 \\
+&\geq& \sum_{k \in \Omega}|\inner{f}{e_k}|^2.
+\end{eqnarray*}
+Take supremum, and we have
+$$
+\Vert f \Vert ^2 \geq \sum_{k \in \Gamma}|\inner{f}{e_k}|^2.
+$$
+\end{Proof}
+Recall that we have already define the span of a family by
+$$
+\mathrm{span}\{e_k\}_{k \in \Gamma} := \{\sum_{k \in \Omega}a_ke_k: \{a_k\}_{k \in \Omega} \ \text{is a finite subfamily of} \ \F\}.
+$$
+And the closure of $\mathrm{span}\{e_k\}_{k \in \Gamma}$ is 
+$$
+\overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}=\left\{ g \in V: \forall \varepsilon>0, B(g,r)\cap \mathrm{span}\{e_k\}_{k \in \Gamma} \neq \emptyset \right\}.
+$$
+\begin{stheorem}{Closure of the span of an orthonormal family}{}
+Suppose $\{e_k\}_{k \in \Gamma}$ is an orthonormal family in a Hilbert space $V$. Then 
+$$
+\overline{\mathrm{span}\{e_k\}_{k \in \Gamma}} = \left\{ \sum_{k \in \Gamma}a_ke_k: \{a_k\}_{k \in \Gamma} \ \text{is a family in} \ \F \ \text{and}\ \sum_{k \in \Gamma}|a_k|^2 < \infty. \right\}
+$$
+Moreover, for all $f \in \overline{\mathrm{span}\{e_k\}_{k \in \Gamma}} $
+$$
+f = \sum_{k \in \Gamma} \inner{f}{e_k}e_k.
+$$	
+\end{stheorem}
+\begin{Proof}
+Note that $\overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}$ is a vector space, as you should verify.
+The set in the right is well-defined since $\sum_{k \in \Gamma}|a_k|^2 < \infty$. We start our proof with $\left\{ \sum_{k \in \Gamma}a_ke_k:  \sum_{k \in \Gamma}|a_k|^2 < \infty. \right\} \subset \overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}$. \par
+First note that for all $g$ in the left set, assume $g=\sum_{k \in \Gamma}a_ke_k$, for all $\varepsilon>0$, there exists $\Omega \subset \Gamma$, such that 
+$$ 
+\sum_{\Gamma \backslash \Omega}|a_k|^2 < \varepsilon^2,
+$$
+which implies 
+$$
+\Vert \sum_{k \in \Gamma}a_ke_k -\sum_{k \in \Omega}a_ke_k \Vert=\sum_{\Gamma \backslash \Omega}|a_k|^2 < \varepsilon.
+$$
+In other words, 
+$$
+B(g,\varepsilon)\cap \overline{\mathrm{span}\{e_k\}_{k \in \Gamma}} \neq\emptyset,
+$$
+and thus $g \in \overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}$. \par
+To prove the other direction, suppose $f \in \overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}$, and 
+$$
+g = \sum_{k \in \Gamma}\inner{f}{e_k}e_k.
+$$
+The Bassel's inequility now implies $g$ is in the set in the right part, next, by the inclusion we have just proved, $g\in \overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}$ and thus $f-g \in \overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}$.
+Also,
+\begin{eqnarray*}
+	\inner{g}{e_j} &=& \inner{\sum_{k \in \Gamma}\inner{f}{e_k}e_k}{e_j} \\
+	&=& \sum_{k \in \Gamma}\inner{f}{e_k}\inner{e_k}{e_j} \\
+	&=& \inner{f}{e_j}.
+\end{eqnarray*}
+Hence 
+$$
+\inner{f-g}{e_k}=0, \ \forall k \in \Gamma.
+$$
+This implies that 
+$$
+g-f \in\left(\operatorname{span}\left\{e_j\right\}_{j \in \Gamma}\right)^{\perp}=\left(\overline{\operatorname{span}\left\{e_j\right\}_{j \in \Gamma}}\right)^{\perp}
+$$
+Since $$
+\left(\operatorname{span}\left\{e_j\right\}_{j \in \Gamma}\right)^{\perp} \cap \left(\overline{\operatorname{span}\left\{e_j\right\}_{j \in \Gamma}}\right)^{\perp} = \{0\},
+$$
+we have $g=f$.
+\end{Proof}
+
+
+\begin{sdefinition}{Orthonormal Basis}{}
+An orthonormal family $\{e_k\}_{k \in \Gamma}$ in a Hilbert space is called an orthonormal family of $V$ if
+$$
+\overline{\mathrm{span}\{e_k\}_{k \in \Gamma}}= V
+$$
+	
+\end{sdefinition}
+
+\begin{stheorem}{Parseval's identity}{}
+Suppose $\{e_k\}_{k \in \Gamma}$ is an orthonormal basis in a Hilbert space $V$. For all $f,g\in V$, we have
+\begin{itemize}
+	\item $f=\sum_{k \in \Gamma}\inner{f}{e_k}e_k$
+	\item $\inner{f}{g}$
+	\item $\inner{f}{f}= \sum_{k \in \Gamma}|\inner{f}{e_k}|^2$
+\end{itemize}
+\end{stheorem}
+
+\begin{sexample}{}{}
+For $k \in \mathbf{Z}$, suppose $e_k:(-\pi, \pi] \rightarrow \mathbf{R}$ is defined by
+$$
+e_k(t)= \begin{cases}\frac{1}{\sqrt{\pi}} \sin (k t) & \text { if } k>0, \\ 
+\frac{1}{\sqrt{2 \pi}} & \text { if } k=0, \\ 
+\frac{1}{\sqrt{\pi}} \cos (k t) & \text { if } k<0\end{cases}
+$$
+Then $\{e_k\}_{k \in Z}$ is an orthonormal basis of $L^2((-\pi,\pi])$.
+\end{sexample}

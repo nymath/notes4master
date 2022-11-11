@@ -1,0 +1,115 @@
+\section{主成分分析}
+主成分分析可以用于降维，同时保持数据的大部分变差。一般来说，当数据相关性较强时，使用主成分分析的效果较好。
+
+\begin{sdefinition}{}{}
+主成分应当具有如下性质:
+\begin{itemize}
+	\item 每一个主成分是原始变量的线性组合
+	\item 主成分数目远远小于变量的数量
+	\item 主成分保留了原始变量的大部分信息
+	\item 第一主成分应当保留最多的信息
+	\item 各主成分之间互不相关
+\end{itemize}	                                                                    
+\end{sdefinition}
+\begin{sremark}{}{}
+我们这里提到的信息，使用方差进行刻画。
+\end{sremark}
+
+\begin{stheorem}{Real Spectrum}{}
+实数域上的自伴随正算子(在标准正交基下为正定的实对称矩阵)，有如下分解
+$$
+\tcbhighmath{\M(T,\nu,\nu) = \M(I,e,\nu)\M(T,e,e)\M(I,\nu,e)}
+$$
+其中$\nu$为特征向量构成的基，而且
+$$
+\tcbhighmath{\M(T,\nu,\nu) = diag(\lambda_1,\cdots,\lambda_n)}
+$$
+$$
+\tcbhighmath{\M(I,\nu,e)=[\nu_1,\cdots,\nu_n]} 
+$$
+即$T$在特征基下的矩阵为一个对角矩阵。
+\end{stheorem}
+
+\subsection{协方差矩阵法}
+\begin{stheorem}{}{}
+假定$\Sigma$正定，$\lambda_i$为其特征值，$\nu_i$为对应的特征向量，则
+$$
+\max_{x \perp \text{span}\{\nu_1,\cdots,\nu_k\}} \frac{\inner{\Sigma x}{x}}{\inner{x}{x}} = \lambda_{k+1}
+$$
+\end{stheorem}
+
+
+\begin{stheorem}{}{}
+假定p维随机向量的协方差矩阵为$\M(T,e,e)=\Sigma$，则正交变换
+$$
+\tcbhighmath{Y = \M(T,e,\nu) X=P^{-1} X}.
+$$
+生成了p个主成分，且$Y[k]=\nu_k^\prime X$为第k主成分。
+\end{stheorem}
+值得注意的是，
+$$
+Var(Y_i) = Var(\nu_k \prime X) = \nu_k \prime \Sigma \nu_k = \lambda_k.
+$$
+\begin{stheorem}{PC的性质}{}
+\begin{itemize}
+	\item $Y$的协方差矩阵为$\M(T,\nu,\nu)$
+	\item $Y$的总方差为$\M(T,\nu,\nu)$的trace.
+\end{itemize}
+\end{stheorem}
+\begin{Proof}
+\begin{eqnarray*}
+	Var(\iota^\prime Y) &=& tr(\M(T,\nu,\nu)) \\
+	&=& tr(\M(T,e,e))
+\end{eqnarray*}
+\end{Proof}
+
+\begin{sdefinition}{贡献率}{}
+主成分$Y_i$的贡献率定义为:
+$$
+\frac{\lambda_i}{\sum_{i=1}^{p}\lambda_i}
+$$
+累积贡献率定义为
+$$
+\frac{\sum_{i=1}{m} \lambda_i}{\sum_{i=1}^{p}\lambda_i}
+$$
+\end{sdefinition}
+
+\begin{sdefinition}{因子负荷量(Factor Loadings)}{}
+$X_i$与$Y_k$的Pearson rho定义为因子负荷量
+$$
+\tcbhighmath{\rho(Y_k,X_i) = \frac{\nu_{ik} \sqrt{\lambda_k}}{\sqrt{\sigma_{ii}}}}
+$$
+\end{sdefinition}
+\begin{Proof}
+	\begin{eqnarray*}
+		Cov(Y_k,X_i) &=& Cov(\nu_k^\prime X,e_i^\prime X) \\
+		&=& \nu_k^\prime \Sigma e_i \\
+		&=& \lambda_k \nu_{ik}.
+	\end{eqnarray*}
+\end{Proof}
+\begin{sremark}{}{}
+$\nu_{ik}$可以解释为第k个主成分对第i个变量的敏感性。 \\
+而因子负荷量的绝对值大小刻画了该主成分的主要意义及其成因，在解释第i个变量是第k个主成分的重要性时，应该根据因子负荷量进行分析，而不是仅仅$\nu_{ik}$. 
+\end{sremark}
+
+\begin{stheorem}{}{}
+$$
+	\tcbhighmath{\sum_{i=1}^p \rho^2(Y_k,X_i)\sigma_{ii} = \lambda_k}
+$$
+\end{stheorem}
+
+\subsection{相关系数法}
+
+
+\subsection{主成分的几何含义}
+随机向量$X$在$e$下的坐标为$(X_1,\cdots,X_p)$，这些指标的coordinate不是独立的。然后呢，我们找了一个新的坐标系$\nu = P\circ e$，在这个坐标系下，$X$的坐标为$(Y_1,\cdots,Y_p)$，而且这些坐标之间是独立的。同时呢，我们也稍微的对$P$的行(列)进行一些交换。这么做之后达到了一个怎么样的效果呢？$X$在$\nu_1$方向上的变差，也就是$Var(Y_1)$，最大。(这体现为，对X不断抽样，然后把它投影到$\nu_1$上，轨迹应该最长才对)
+
+
+
+
+
+
+
+
+
+

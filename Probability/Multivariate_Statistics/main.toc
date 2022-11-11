@@ -1,0 +1,11 @@
+\contentsline {section}{\numberline {1}样本几何}{2}{section.1}%
+\contentsline {section}{\numberline {2}多元假设检验}{3}{section.2}%
+\contentsline {section}{\numberline {3}判别分析}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}贝叶斯判别法}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Fisher判别法}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}主成分分析}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}协方差矩阵法}{6}{subsection.4.1}%
+\contentsline {paragraph}{\leavevmode {\color [rgb]{0.1,0.8,0.9}\textsf {Proof}}}{7}{section*.4}%
+\contentsline {paragraph}{\leavevmode {\color [rgb]{0.1,0.8,0.9}\textsf {Proof}}}{8}{section*.6}%
+\contentsline {subsection}{\numberline {4.2}相关系数法}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}主成分的几何含义}{8}{subsection.4.3}%

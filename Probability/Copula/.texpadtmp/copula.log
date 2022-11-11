@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.21)  8 NOV 2022 21:43
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.21)  11 NOV 2022 09:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -717,7 +717,7 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 48.
 \c@lemma=\count355
 \c@tcb@cnt@stheorem=\count356
 \c@tcb@cnt@sremark=\count357
-) (/Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.aux)
+) (/Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.aux)
 \openout1 = `copula.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
@@ -844,7 +844,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 8.
 LaTeX Info: Redefining \pageref on input line 8.
 LaTeX Info: Redefining \nameref on input line 8.
- (/Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.out) (/Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.out)
+ (/Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.out) (/Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.out)
 \@outlinefile=\write4
 \openout4 = `copula.out'.
 
@@ -863,17 +863,17 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 
 LaTeX Warning: Citation `czado2019analyzing' on page 1 undefined on input line 18.
 
-(/Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.toc [1
+(/Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.toc [1
 
 ])
 \tf@toc=\write5
 \openout5 = `copula.toc'.
 
- (/Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.lof)
+ (/Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.lof)
 \tf@lof=\write6
 \openout6 = `copula.lof'.
 
- (/Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.lot)
+ (/Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.lot)
 \tf@lot=\write7
 \openout7 = `copula.lot'.
 
@@ -914,30 +914,30 @@ Missing character: There is no ， (U+FF0C) in font [lmroman10-regular]:mapping=
 File: figure/Copula_contrast.png Graphic file (type bmp)
 <figure/Copula_contrast.png>
 
-Underfull \hbox (badness 2012) in paragraph at lines 317--318
+Underfull \hbox (badness 2012) in paragraph at lines 332--333
 []\TU/lmr/m/n/10.95 Using Cholesky Decomposition to $\OT1/cmr/m/n/10.95 ^^F = \OML/cmm/m/it/10.95 AA[]$ \TU/lmr/m/n/10.95 and obtain $\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 X[]; []  ; X[]\OT1/cmr/m/n/10.95 ] =
  []
 
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <8> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 328.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 343.
 LaTeX Font Info:    Font shape `U/lasy/b/n' in size <6> not available
-(Font)              Font shape `U/lasy/m/n' tried instead on input line 328.
+(Font)              Font shape `U/lasy/m/n' tried instead on input line 343.
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 328.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 343.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 328.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 343.
 
 [10]
-Overfull \hbox (49.86415pt too wide) in paragraph at lines 379--393
+Overfull \hbox (49.86415pt too wide) in paragraph at lines 394--408
  [][] 
  []
 
 File: figure/Archimedean.jpeg Graphic file (type bmp)
 <figure/Archimedean.jpeg>
-[11] [12] [13] (/Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.aux)
+[11] [12] [13] (/Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -945,15 +945,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `copula.out' has not changed.
-(rerunfilecheck)             Checksum: CAC9C7148EA633F75EB6FA57D6CDE2D8;3059.
+(rerunfilecheck)             Checksum: 813D565D36240983554E53F83B995EBA;3123.
  ) 
 Here is how much of TeX's memory you used:
- 30430 strings out of 476179
- 672570 string characters out of 5809544
- 1015980 words of memory out of 5000000
- 50597 multiletter control sequences out of 15000+600000
+ 30432 strings out of 476179
+ 672738 string characters out of 5809544
+ 1016064 words of memory out of 5000000
+ 50599 multiletter control sequences out of 15000+600000
  486750 words of font info for 141 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 107i,14n,109p,454b,963s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 107i,14n,109p,450b,963s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on /Users/nymath/Notes/Probability/Copula/.texpadtmp/copula.pdf (13 pages).
+Output written on /Users/nymath/Desktop/Notes/Probability/Copula/.texpadtmp/copula.pdf (13 pages).

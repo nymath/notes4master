@@ -1,152 +1,9 @@
+\PassOptionsToPackage{table}{xcolor}
 \documentclass[12pt]{article}
+\include{template/pre_config}
+
 \usepackage{ctex}
 
-\usepackage[top=.8in, bottom=.8in, left=.8in, right=.8in]{geometry}
-\usepackage{amsmath}
-\usepackage{tikz}
-\usetikzlibrary[topaths]
-\newcount\mycount
-\usepackage{amssymb,latexsym}\usepackage{amsxtra}
-\usepackage{amsthm}
-\usepackage{graphicx}
-\usepackage{setspace}
-\onehalfspacing
-\usepackage{wasysym} 
-\usepackage{verbatim} 
-\usepackage{arcs}
-\usepackage{accents}
-\theoremstyle{definition}
-\usepackage[skins]{tcolorbox}
-\tcbuselibrary{skins,theorems}
-\tcbuselibrary{breakable}
-%---------------------- New-environment ----------------
-\newenvironment{Proof}
-{
-\vspace{-0.5cm}
-\paragraph{\textcolor[rgb]{0.1,0.8,0.9}{\textsf{Proof}}}
-}
-{\hfill$\square$\vspace{0.3cm}}
-
-\newenvironment{Remark}
-{
-\paragraph{\textcolor[rgb]{0.9,0.0,0.6}{\textsf{Remark}}}
-}
-
-%----------------------
-
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    pdftitle={Overleaf Example},
-    pdfpagemode=FullScreen,
-    }
-\urlstyle{same}
-
-
-%-----------------------------------------------------------------------------%
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}[section]
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem*{fact}{Fact}
-\newtheorem{remark}{Remark}
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-
-
-\newcommand{\df}{\displaystyle \frac} 
-\newcommand{\dlim}{\displaystyle \lim}
-\newcommand{\dint}{\displaystyle \int}
-\newcommand{\ra}{\rangle}
-\newcommand{\la}{\langle}
-\newcommand{\inner}[2]{{\langle #1,#2\rangle}}
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\xt}{\mathbf{x}^{\mathsf{T}}}
-\newcommand{\T}{{\mathsf{T}}}
-\newcommand{\abf}{\mathbf{a}}
-\newcommand{\abft}{\mathbf{a}^{\mathsf{T}}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\E}{\mathrm{e}}
-\newcommand{\F}{\mathbb{F}}
-\newcommand{\X}{\mathbf{X}}
-\newcommand{\Y}{\mathbf{Y}}
-\newcommand{\f}{\mathbf{f}}
-\newcommand{\U}{\mathbf{u}}
-\newcommand{\D}{\mathrm{d}}
-\newcommand{\MCG}{\mathcal{G}}
-\newcommand{\MCF}{\mathcal{F}}
-\newcommand{\M}{\mathcal{M}}
-\newcommand{\MCB}{\mathcal{B}}
-\newcommand{\MCT}{\mathcal{T}}
-\newcommand{\LL}{\mathcal{L}}
-\newcommand{\nullspace}{\mathrm{null}}
-\newcommand{\range}{\mathrm{range}}
-\newcommand{\Sum}[2]{{\sum_{#1}^{#2}}}
-\newcommand{\Union}[2]{{\bigcup_{#1}^{#2}}}
-\newcommand{\Intersection}[2]{{\bigcap_{#1}^{#2}}}
-
-\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
-\definecolor{my-violet}{rgb}{0.9,0.0,0.6}
-
-\newtcbtheorem[auto counter,number within=section]{stheorem}{Theorem}
-{
-	breakable,
-	fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-	arc=3mm, ,separator sign = \ ,
-	theorem number and name,
-	colbacktitle=blue!25!white,colback=blue!8!white,colframe=black,coltitle=black,
-	toptitle=1.5mm,bottomtitle=1.5mm, 
-}{th}
-
-\newtcbtheorem[use counter from=stheorem]{sdefinition}%
-  {定义}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-     arc=3mm, ,separator sign = \ ,
-     theorem number and name,
-     colbacktitle=yellow!50!white,colback=yellow!15!white,colframe=black,coltitle=black,
-     toptitle=1.5mm,bottomtitle=1.5mm,
-     }{def}
-     
-\newtcbtheorem[use counter from=stheorem]{sconclude}%
-  {}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-     arc=3mm, ,separator sign = \ ,
-     theorem number and name,
-     colbacktitle=yellow!50!white,colback=yellow!15!white,colframe=black,coltitle=black,
-     toptitle=1.5mm,bottomtitle=1.5mm,
-     }{def}
-
-\newtcbtheorem[use counter from=stheorem]{scorollary}%
-  {定理}{breakable,fonttitle=\bfseries\upshape,description font=\bfseries\itshape,
-     arc=3mm, ,separator sign = \ ,
-     theorem number and name,
-     colbacktitle=blue!25!white,colback=blue!8!white,colframe=black,coltitle=black,
-     toptitle=1.5mm,bottomtitle=1.5mm,
-     }{cr}
-     
-\newtcbtheorem[use counter from=stheorem]{sexample}%
-  {Example}{breakable,theorem style=plain,separator sign = \ ,
-  	fonttitle=\sffamily\normalsize,description font=\sf\itshape,
-  	colbacktitle=black!11!white,coltitle=black,colframe=black,
-    arc=0mm,outer arc=0mm,
-    toptitle=1.5mm,bottomtitle=1.5mm,left=1mm,right=1mm,
-	boxrule=0mm,toprule=0.5mm,bottomrule=.5mm,	rightrule=0mm,titlerule=0mm,top=0mm,
-	,colback=black!6!white}{ex}
-
-\newtcbtheorem[]{sremark}%
-  {Remark}{breakable,theorem style=plain,theorem name,
-  	description font=\sf\itshape,fontupper=\sffamily\normalsize, colbacktitle=green!11!white,coltitle=my-violet,colframe=black,colback=black!6!white,
-    arc=2mm,
-    left=1mm,right=1mm,
-	toprule=0.5mm,bottomrule=.5mm,rightrule=0.5mm,leftrule=.5mm,titlerule=0mm,
-	}{ex}
-\newtcbox{\boxred}{colback=red!5!white,
-colframe=red!75!black,on line,size=fbox}
-\newtcbox{\boxgrey}{on line,size=fbox}
-\newtcbox{\Ebox}{colback=red!5!white,
-colframe=red!75!black}
 
 \begin{document}
 	\title{实习汇报}
@@ -702,118 +559,114 @@ $$
 
 
 \section{因子挖掘—日内残差高阶矩}
+\include{template/Volatility.tex}
 
 
-\section{因子—波动率}
-我们提到资产的波动率时，是指价格的标准差，还是收益的标准差。
-波动率可以分为实际波动率， 历史波动率， 隐含波动率，预测波动率等。
+\include{chapter/因子投研平台操作流程}
 
 
-
-
-
-\section{研报阅读一}
-\cite{ori1}
-\subsection{单因子有效性检验}
-量化选股主要涉及到两个核心的问题。第一，如何 选出有逻辑意义并且能够有效的区分个股的因子，使得因子值对于个股未来收益有一定的预测能力。 第二，影响市场的因子众多，且市场风格并非一成不变，我们如何构建一个能够适应市场变化的多 因子模型，筛选出大概率能够战胜市场的股票组合
-\begin{sconclude}{}{}
-\begin{itemize}
-	\item 
-	\item 市值因子，反转因子，换手率指标，各类业绩增速指标和估值指标表现较好
-	\item 资产负债率，周转天数，ROE，ROA，销售利润对股价有一定的预测性
-\end{itemize}
-\end{sconclude}
-
-
-\subsection{单因子检验}
-我们的目标在于检验因子与未来收益率是否存在显著相关性。主要流程是，按照每一期指标值大小对股票分组，这样各组的指标可以看作一致，然后比较各组的表现，比如\boxgrey{累计收益，信息比率，最大回撤，胜率等}, \boxred{单调性越强，优势组的胜率越高}。
-\subsubsection{OLS v.s. Robust}
-Robust能够容忍异常值
-\subsubsection{整体回归 v.s. 按月度回归}
-按月度回归的好处：减少样本量（样本量过大会导致相关系数显著），有利于观察指标的历史变化情况，比如正负月份的具体比例，因子的持续周期和反转频率
-\subsubsection{相关系数的度量}
-Pearson，Spearman rho， kendall tau对比，后面俩可以度量非线性关系，但随时了边缘分布的信息，\boxred{经验法则是Spearman rho的显著比例高于Pearson rho}。
-
-\subsubsection{是否应当行业中性化}
-基本面因子，如\boxgrey{PB，资产周转率，市值}，存在\boxred{行业固定效应}，所以全市场分组不合理。，行业中性化相当于，我们在每个行业按照PB进行分组，在根据流通市值加权，这样就可以认为每组的不存在行业固定效应了。
-\subsubsection{同向显著比例，状态切换比例}
-用当月因子值与次月收益率算出来的回归系数，可能随时时间发生改变，实际预测的时候怎么办呢？\\
-1. 选择正负比例中较高的那个, 2. 如果因子的特性延续性较好，则可以最近一期的数据情况对下一期进行预测。
-
-\subsection{结果展示及业界通用做法}
-\begin{sconclude}{}{}
-	\begin{itemize}
-		\item 衡量因子是否显著：秩相关系数正/负比例至少一项大于0.35, 或者之和大于0.6
-		\item 是否行业中性化：行业内分组的优胜组年化超额收益大于全市场分组
-		\item 因子稳定度的衡量：1.同向显著次数大于状态切换次数，说明因子有一定趋势 2. 当同向显著的比例大于 max（正显著相关，负显著相关），则在后续的多因子模型建立中，动态的决定指标的参数可能胜率更
-
-	\end{itemize}
-\end{sconclude}
-一些疑问是, \boxred{本月因子值与下月收益率做回归，但问题是数据的长度可能不匹配}, 而且对应规则如何呢？是当前月第一天对应次月第一天吗? 还有就是所有因子每天都有数据吗？会不会有某些因为长时间保持不变呢？或者说，我们做的是截面上的回归，那这和样本量有什么关系呢？\par
-是否只有单调性好的指标才是好的因子？并不是，某些因子的特性，或者要达到一定阈值后因子的效果才会体现出来。
-
-\section{研报阅读二—特质波动率}
-\subsection{现象及结论}
-低特质波动率，未来预期收益更高。
-首先是特质波动率，严格定义一下，在因子模型中，我们认为个股i的超额收益率为
-\begin{stheorem}{方差分解}{}
-$$
-R_i = \alpha + \inner{B}{F} + \epsilon_i
-$$
-$$
-\tcbhighmath{Var(R_i)=Var(E(R_i|F))+E(Var(R_i|F))}
-$$
-\end{stheorem}
-我们认为$Var(R_i|F)$就是$R_i$的特异风险的平方。
-
-\begin{sconclude}{}{}
-\vspace{-.4mm}
-\begin{itemize}
-	\item FF三因子模型残差的波动率能更好捕捉股票的特质风险，记作IVFF.（好体现在哪里）
-	\item 特质风险与未来截面收益率存在负相关关系，IVFF预测能力最强
-	\item 
-\end{itemize}
-\end{sconclude}
-
-
-\section{研报阅读三—交易行为与股票收益}
-\begin{sconclude}{}{}
-\begin{itemize}
-	\item 投机程度弱的股票未来大概率涨，所以应当买入
-	\item 通过交易行为指标度量投机程度，具体有: \\ \boxgrey{特征波动率，特异度，价格时滞，市值调整换手}
-	\item 这些交易行为类指标均表现出较强的收益预测能力
-	\item 特异度和市值调整换手在控制其他交易行为类指标后还能带来超额收益。
-\end{itemize} 
-\end{sconclude}
-
-\subsection{交易行为类指标}
-过度投机的股票会有，\boxgrey{高波动性，风格独立，价格时滞，高换手}的特点。
-\subsubsection{特质波动率}
-我们用特质波动率来衡量个股的波动程度，特质波动率实质是条件方差，所以我们用条件方差的均值进行刻画。
-$$
-\tcbhighmath{\text{特质波动率}^2 = \frac{SSR_{Fama}}{n}}
-$$
-被投机的股票多空分歧大，进而展现出大的波动。
-
-\subsubsection{特异度}
-被过度投机的股票会过分利用自身信息，忽视市场规律，从而我们的$Fama-French$模型对股价的解释力度较差，这说明$R^2$较低. 因此我们定义
-$$
-\tcbhighmath{IVR = \frac{SSR}{SST} = \frac{\text{特质方差}}{\text{总方差}}}
-$$
-\subsubsection{价格时滞}
-过度投机的股票不能及时反应价格信息，但这并不意味着过去的信息就有用，所以我觉得讨论这个指标纯粹是浪费时间。
-\subsubsection{高换手}
-过度投机的股票换手率较高，这个很容易理解，但市值和换手率相关度较高，所以我们先取对数(让数据服从正态)，然后将对数换手率关于对数市值作一个正交分解，将残差作为\boxgrey{市值调整的收益率}
-
-
-\section{研报阅读八—动态情景多因子Alpha模型}
-\subsection{Alpha模型的构建}
-什么是alpha模型？alpha模型的最终目标在于给股票未来收益率排序，核心是因子的挑选和不同因子间的权重配比。动态情景alpha模型，Dynamic Contextual Alpha(DCA)，
-\section{研报阅读九—日内残差高阶矩与股票收益}
-高频数据，分笔数据(tick)，快照数据（quote），分钟数据，资金流量数据等。
-日内价格行为特征和股票未来收益率之间的关系
-
-\section{研报—波动率}
+%\section{研报阅读一}
+%\cite{ori1}
+%\subsection{单因子有效性检验}
+%量化选股主要涉及到两个核心的问题。第一，如何 选出有逻辑意义并且能够有效的区分个股的因子，使得因子值对于个股未来收益有一定的预测能力。 第二，影响市场的因子众多，且市场风格并非一成不变，我们如何构建一个能够适应市场变化的多 因子模型，筛选出大概率能够战胜市场的股票组合
+%\begin{sconclude}{}{}
+%\begin{itemize}
+%	\item 
+%	\item 市值因子，反转因子，换手率指标，各类业绩增速指标和估值指标表现较好
+%	\item 资产负债率，周转天数，ROE，ROA，销售利润对股价有一定的预测性
+%\end{itemize}
+%\end{sconclude}
+%
+%
+%\subsection{单因子检验}
+%我们的目标在于检验因子与未来收益率是否存在显著相关性。主要流程是，按照每一期指标值大小对股票分组，这样各组的指标可以看作一致，然后比较各组的表现，比如\boxgrey{累计收益，信息比率，最大回撤，胜率等}, \boxred{单调性越强，优势组的胜率越高}。
+%\subsubsection{OLS v.s. Robust}
+%Robust能够容忍异常值
+%\subsubsection{整体回归 v.s. 按月度回归}
+%按月度回归的好处：减少样本量（样本量过大会导致相关系数显著），有利于观察指标的历史变化情况，比如正负月份的具体比例，因子的持续周期和反转频率
+%\subsubsection{相关系数的度量}
+%Pearson，Spearman rho， kendall tau对比，后面俩可以度量非线性关系，但随时了边缘分布的信息，\boxred{经验法则是Spearman rho的显著比例高于Pearson rho}。
+%
+%\subsubsection{是否应当行业中性化}
+%基本面因子，如\boxgrey{PB，资产周转率，市值}，存在\boxred{行业固定效应}，所以全市场分组不合理。，行业中性化相当于，我们在每个行业按照PB进行分组，在根据流通市值加权，这样就可以认为每组的不存在行业固定效应了。
+%\subsubsection{同向显著比例，状态切换比例}
+%用当月因子值与次月收益率算出来的回归系数，可能随时时间发生改变，实际预测的时候怎么办呢？\\
+%1. 选择正负比例中较高的那个, 2. 如果因子的特性延续性较好，则可以最近一期的数据情况对下一期进行预测。
+%
+%\subsection{结果展示及业界通用做法}
+%\begin{sconclude}{}{}
+%	\begin{itemize}
+%		\item 衡量因子是否显著：秩相关系数正/负比例至少一项大于0.35, 或者之和大于0.6
+%		\item 是否行业中性化：行业内分组的优胜组年化超额收益大于全市场分组
+%		\item 因子稳定度的衡量：1.同向显著次数大于状态切换次数，说明因子有一定趋势 2. 当同向显著的比例大于 max（正显著相关，负显著相关），则在后续的多因子模型建立中，动态的决定指标的参数可能胜率更
+%
+%	\end{itemize}
+%\end{sconclude}
+%一些疑问是, \boxred{本月因子值与下月收益率做回归，但问题是数据的长度可能不匹配}, 而且对应规则如何呢？是当前月第一天对应次月第一天吗? 还有就是所有因子每天都有数据吗？会不会有某些因为长时间保持不变呢？或者说，我们做的是截面上的回归，那这和样本量有什么关系呢？\par
+%是否只有单调性好的指标才是好的因子？并不是，某些因子的特性，或者要达到一定阈值后因子的效果才会体现出来。
+%
+%\section{研报阅读二—特质波动率}
+%\subsection{现象及结论}
+%低特质波动率，未来预期收益更高。
+%首先是特质波动率，严格定义一下，在因子模型中，我们认为个股i的超额收益率为
+%\begin{stheorem}{方差分解}{}
+%$$
+%R_i = \alpha + \inner{B}{F} + \epsilon_i
+%$$
+%$$
+%\tcbhighmath{Var(R_i)=Var(E(R_i|F))+E(Var(R_i|F))}
+%$$
+%\end{stheorem}
+%我们认为$Var(R_i|F)$就是$R_i$的特异风险的平方。
+%
+%\begin{sconclude}{}{}
+%\vspace{-.4mm}
+%\begin{itemize}
+%	\item FF三因子模型残差的波动率能更好捕捉股票的特质风险，记作IVFF.（好体现在哪里）
+%	\item 特质风险与未来截面收益率存在负相关关系，IVFF预测能力最强
+%	\item 
+%\end{itemize}
+%\end{sconclude}
+%
+%
+%\section{研报阅读三—交易行为与股票收益}
+%\begin{sconclude}{}{}
+%\begin{itemize}
+%	\item 投机程度弱的股票未来大概率涨，所以应当买入
+%	\item 通过交易行为指标度量投机程度，具体有: \\ \boxgrey{特征波动率，特异度，价格时滞，市值调整换手}
+%	\item 这些交易行为类指标均表现出较强的收益预测能力
+%	\item 特异度和市值调整换手在控制其他交易行为类指标后还能带来超额收益。
+%\end{itemize} 
+%\end{sconclude}
+%
+%\subsection{交易行为类指标}
+%过度投机的股票会有，\boxgrey{高波动性，风格独立，价格时滞，高换手}的特点。
+%\subsubsection{特质波动率}
+%我们用特质波动率来衡量个股的波动程度，特质波动率实质是条件方差，所以我们用条件方差的均值进行刻画。
+%$$
+%\tcbhighmath{\text{特质波动率}^2 = \frac{SSR_{Fama}}{n}}
+%$$
+%被投机的股票多空分歧大，进而展现出大的波动。
+%
+%\subsubsection{特异度}
+%被过度投机的股票会过分利用自身信息，忽视市场规律，从而我们的$Fama-French$模型对股价的解释力度较差，这说明$R^2$较低. 因此我们定义
+%$$
+%\tcbhighmath{IVR = \frac{SSR}{SST} = \frac{\text{特质方差}}{\text{总方差}}}
+%$$
+%\subsubsection{价格时滞}
+%过度投机的股票不能及时反应价格信息，但这并不意味着过去的信息就有用，所以我觉得讨论这个指标纯粹是浪费时间。
+%\subsubsection{高换手}
+%过度投机的股票换手率较高，这个很容易理解，但市值和换手率相关度较高，所以我们先取对数(让数据服从正态)，然后将对数换手率关于对数市值作一个正交分解，将残差作为\boxgrey{市值调整的收益率}
+%
+%
+%\section{研报阅读八—动态情景多因子Alpha模型}
+%\subsection{Alpha模型的构建}
+%什么是alpha模型？alpha模型的最终目标在于给股票未来收益率排序，核心是因子的挑选和不同因子间的权重配比。动态情景alpha模型，Dynamic Contextual Alpha(DCA)，
+%\section{研报阅读九—日内残差高阶矩与股票收益}
+%高频数据，分笔数据(tick)，快照数据（quote），分钟数据，资金流量数据等。
+%日内价格行为特征和股票未来收益率之间的关系
+%
+%\section{研报—波动率}
 
 
 

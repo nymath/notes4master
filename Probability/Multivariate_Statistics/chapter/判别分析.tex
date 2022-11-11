@@ -1,0 +1,52 @@
+\section{判别分析}
+
+
+\subsection{贝叶斯判别法}
+这里顺便复习一下，贝叶斯统计。假设总体有k个类别，我们用$\Theta$表示，$\Theta \sim (p_1,\cdots,p_k)$. 用$X$代表数据展现出的特征，同时我们有条件密度函数
+$$
+f(x|\Theta=i) = f_i(x)
+$$
+这个条件密度函数可以通过样本进行估计(或者直接给定，但前者更好)。
+基于此，我们得到参数的后验分布，$\Theta_{|X=x}$，他服从
+$$
+\Theta_{|X=x} \sim (\frac{f_i(x)P_i}{\sum_{i=1}^kP_if_i(x)})
+$$
+接下来，我们想选择一个随机变量(估计量)，他与$\Theta_{|X=x}$的"距离"充分接近。
+常用的备选有
+\begin{itemize}
+	\item $L^2$距离: $L(\theta,\Theta_{|X=x})=E(\theta-\Theta_{|X=x})^2$.
+	\item $L^1$距离: $L(\theta,\Theta_{|X=x})=E(|\theta-\Theta_{|X=x}|)$.
+	\item 
+\end{itemize}
+\begin{sremark}{}{}
+特别的，在$L^2$距离意义下，我们的估计是$E(\Theta|X=x)$.
+\end{sremark}
+但是呢，在判别分析中，我们有更一般的损失函数，即
+$$
+L(\theta,\Theta_{|X=x})= E(c(\theta|\Theta_{|X=x})).
+$$
+\begin{sexample}{}{}
+当$c(\theta|\Theta_{|X=x})=1-\chi_{\theta}(\Theta_{|X=x})$时，期望损失为
+$$
+1 - \sum_{i=1}^{n}\chi_{\theta}(i)\frac{f_i(x)P_i}{\sum_{i=1}^kP_if_i(x)}
+$$
+因此，当$\theta$等于$\Theta_{|X=x}$的众数时，期望损失最小。
+\end{sexample}
+更一般的，我们的损失函数可以定义为
+$$
+\tcbhighmath{L(\theta,\Theta_{|X=x}) = \sum_{j=1}^k c(\theta|j)\frac{f_j(x)P_j}{\sum_{i=1}^kP_if_i(x)}} 
+$$
+
+\subsection{Fisher判别法}
+Fisher判别法的思路在于，$\R^p$的一个向量，将我们的各组数据投影在这个向量上，使得组内距离充分小，组间距离充分大。（实际上是一维的方差分析）。由于我们的数据都在同一个方向，所以我们只需要计算各组数据与这个向量的内积即可。具体而言
+$$
+\tcbhighmath{
+\begin{array}{l l l l l}
+	G_1: & x_{1}^{(1)}, &x_{2}^{(1)}, & \cdots, &  x_{n_1}^{(1)}  \\
+	G_2: & x_{1}^{(2)}, &x_{2}^{(2)}, & \cdots, &  x_{n_2}^{(2)}  \\
+	 &  & \vdots & &  \\
+	G_k: & x_{1}^{(k)}, &x_{2}^{(k)} ,& \cdots, &  x_{n_k}^{(k)}  \\
+\end{array}
+}
+$$
+

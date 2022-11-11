@@ -1,0 +1,282 @@
+\chapter{Probability Theory}
+Probability theory has become increasingly important in multiple parts of science. Getting deeply into probability theory requires a full book, not just a chapter. For readers who intend to pursue further studies in probability theory, this chapter gives you a good head start. For readers not intending to delve further into probability theory, this chapter gives you a taste of the subject.
+
+Modern probability theory makes major use of measure theory. As we will see, a probability measure is simply a measure such that the measure of the whole space equals 1 . Thus a thorough understanding of the chapters of this book dealing with measure theory and integration provides a solid foundation for probability theory.
+However, probability theory is not simply the special case of measure theory where the whole space has measure 1 . The questions that probability theory investigates differ from the questions natural to measure theory. For example, the probability notions of independent sets and independent random variables, which are introduced in this chapter, do not arise in measure theory.
+
+Even when concepts in probability theory have the same meaning as well-known concepts in measure theory, the terminology and notation can be quite different. Thus one goal of this chapter is to introduce the vocabulary of probability theory. This difference in vocabulary between probability theory and measure theory occurred because the two subjects had different historical developments, only coming together in the first half of the twentieth century.
+
+\newpage
+\section{Distribution Functions and Lebesgue-Stieltjes Measures}
+\begin{sdefinition}{}{}
+Suppose $(\Omega,\mathcal F)$ is a measurable space, we say $P$ is a probabilty measure define on $(\Omega,\mathcal F)$ if 
+\begin{enumerate}
+	\item $P$ is a measure on $(\Omega,\mathcal F)$,
+	\item $\mathrm{range}P \in [0,1]$,
+	\item $P(\Omega)=1$.
+\end{enumerate}
+The triple $(\Omega,\mathcal F,P)$ is called a probability space.
+\end{sdefinition}
+
+\begin{definition}[Distribution Function] \ \\
+Suppose $H:\R \to [0,1]$ is a function. Then $H$ is called a distribution function if the following conditions are all satisfied:
+\begin{enumerate}
+	\item $H$ is an increasing function;
+	\item $\lim_{t \to -\infty}H(t)=0$;
+	\item $\lim_{t \to -\infty}H(t)=1$;
+	\item $\lim_{t \to s^+}H(t)=H(s)$. In other words, $H$ is right continuous.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+If $H$ is a distribution function, then there exists a probability space $(\Omega,\mathcal F,P)$, and a random variable $X \in L^1(P)$ such that $H=F_X$	.
+\end{theorem}
+\begin{proof}
+We will show this theorem by construction. Let $\Omega=(0,1)$, $\mathcal F=B((0,1))$ and $P$ is the Lesbesgue measure on $(\Omega,\mathcal F)$. Definea random varable $X$ by
+$$
+X(\omega)= \sup \{t\in R: H(t)<\omega \}.
+$$
+\end{proof}
+
+
+
+
+
+
+\section{Random Variables and Distribution}
+In this course, a random variable is a function from $\Omega$ to $\R$, often denoted by $X,Y,Z$. It does no harm to assume that $X \in L^1(\mathcal F,P)$.
+\begin{definition}[Probabilty Distribution Measure].\label{PDM}
+Suppose $X \in L^1(\mathcal F,P)$, then the probabilty distribution measure of $X$, denoted by $\mu_X$, is a set function defined by
+$$
+\mu_X := P \circ X^{-1}: B(\R) \to [0,1],\ B \mapsto P \circ X^{-1}(B)
+$$
+\end{definition}
+
+The function $\mu_X$ defined above is indeed a probability measure on $(\R,B(\R))$, as you should verify.
+\begin{remark}
+	123
+\end{remark}
+\begin{definition}(CDF) \\
+Suppose $X \in L^1(\mathcal F,P)$, then the cdf of $X$ is the function $F_X$ defined by
+$$
+F_X:\R \to [0,1], \ x \mapsto \mu_X((-\infty,x]).
+$$
+\end{definition}
+\begin{proposition}
+Suppose $\lambda$ is the Lebesgue measure on $(\R,B(\R))$ and $\mu_X$ is the probability distribution defined on $(\R,B(\R))$	. If $\mu_X \ll \lambda$, then 
+there exists unique $f_X\in L^1(\R,B(\R),\lambda)$, such that for
+$$
+\mu_X(A) = \int_A f_X \D \lambda.
+$$
+\end{proposition}
+\begin{proof}
+A direct consequence of Radon-Nikodym Theorem. 	
+\end{proof}
+\begin{remark}
+$f_X$ is often called the density function of $X$.
+\end{remark}
+
+\begin{theorem}[Expectation] Suppose $g$ is a Borel-measurable function, then
+$$
+E(g(X))=\int_\Omega g\circ X \D P = \int_\R g\circ I \D \mu_X = \int_\R g(x) \D \mu_X(x).
+$$
+\end{theorem}
+Where $I: \R \to \R, \ x \mapsto x$.
+\begin{proof}
+First suppose $g \circ X$ is a simple function that in $L^1(\Omega,\mathcal F,P)$, that is 
+$$
+g \circ X = \Sum{k=1}{n} c_k I_{E_k}.
+$$	
+\begin{eqnarray*}
+	g X X^{-1} &=& \Sum{k=1}{n} c_k I_{E_k}X^{-1}. \\
+	&=& \Sum{k=1}{n} c_k I_{X(E_k)}
+\end{eqnarray*}
+On the one hand, 
+$$
+\int_\Omega g\circ X \D P = \Sum{k=1}{n} c_k P(E_k).
+$$
+On the other hand, 
+\begin{eqnarray*}
+\int_\R g\circ I \D \mu_X &=& \int_\R \Sum{k=1}{n} c_k I_{X(E_k)} \D \mu_X \\
+&=& \Sum{k=1}{n} c_k \mu_X XE_k \\
+&=& \Sum{k=1}{n} c_k P X^{-1} X E_k \\
+&=& \Sum{k=1}{n} c_k P(E_k).
+\end{eqnarray*}
+The other case is obtained by the density argument.
+\end{proof}
+
+
+
+
+\begin{proposition}
+If $\mu_X \ll \lambda$, then
+$$
+E(g(X))=\int_\Omega g \circ X \D P = \int_\R g(x)f(x) \D \lambda (x)
+$$
+
+\end{proposition}
+
+
+\begin{definition}[Random Vector] \ \\
+Suppose $X_1,X_2 \in L^1(\Omega,\mathcal F,P)$. Then the joint probabilty measure	of $X_1$ and $X_2$ is a measure on $(\R^2,B(\R^2))$, defined by
+$$
+\mu_{X_1,X_2} : B(\R^2) \to [0,1], \ B_1\times B_2 \mapsto P \circ (X_1,X_2)^{-1}(B_1\times B_2)
+$$
+where
+$$
+(X_1,X_2)^{-1}: (B_1\times B_2) \mapsto X^{-1}(B_1)\cap X^{-1}(B_2)
+$$
+Further, if $\mu_{X_1,X_2} \ll \lambda^2$, the Radon-Nikodym Theorem implies there exists unique $f_{X_1,X_2}\in L^2(\R^2,B(\R^2),\lambda^2)$, such that for all $E\in B(\R^2)$
+$$
+\mu_{X_1,X_2}(E) = \int_E f_{X_1,X_2} \D \lambda^2.
+$$
+\end{definition}
+
+\begin{theorem}
+Suppose $g$ is a Borel-function on from $\R^2$ to $\R$. Then 
+$$
+E(g(X,Y))=\int_\Omega g\circ (X,Y) \D P = \int_{\R^2} g(x,y) \D \mu_{X,Y}(x,y)
+$$
+Further, if $\mu_{X,Y} \ll \lambda$, we have
+$$
+E(g(X,Y))=\int_{\R^2} g(x,y) \D \mu_{X,Y}(x,y)= \int_{\R^2} g(x,y)f_{X,Y}(x,y)\D \lambda^2(x,y).
+$$
+\end{theorem}
+Since $f_{X,Y} \in L^2(\lambda^2)$, we have
+$$
+f_Y :y \mapsto \int_{\R} f_{X,Y}(x,y)\D \lambda(x).
+$$
+The Fubini's Theorem now implies $f_Y\in L^1(\lambda)$. You should verify that 
+$$
+f_Y =\frac{\D  \mu_Y}{\D \lambda}.
+$$
+$f_y$ defined above if often the marginal density function of $Y$.
+Some facts that you should verify 
+\begin{itemize}
+	\item $\mu_Y(B)$ = $\mu_{X,Y}(\R,B)$
+	\item 
+\end{itemize}
+
+\begin{definition}[Conditional density function] \ \\
+Suppose $(X,Y)$ is a random vector and $\mu_{X,Y} \ll \lambda^2$.
+For $x \in \mathrm{supp}(f_X)$, we define the conditional density function of 
+Y with respect to $X$ by
+	$$f_{Y|X=x}: y \mapsto \frac{f_{X,Y}(x,y)}{f_X(x)}=\frac{f_{X,Y}(x,y)}{\int_{\R}f_{X,Y}(x,y)\D \lambda(y)}=f(y|x)$$
+\end{definition}
+
+\begin{example}[Conditional Expectation I] \ \\
+Suppose $(X,Y)$ is a random vector and $\mu_{X,Y} \ll \lambda^2$. Then $E(Y|X=x)$ is defined by
+$$
+E(Y|X=x) := \int_\R yf(y|x) \lambda(y)
+$$
+\end{example}
+
+\begin{example}[Conditional Expectation II] \ \\
+Suppose $(X,Y)$ is a random vector and $\mathrm{range} X$ is countable. Then for all $x_k\in \mathrm{range} X$
+$$
+E(Y|X=x_k) := E^{P_{x_k}}(Y)=\frac{E(YI_{X=x_k})}{P(X=x_k)}
+$$ 
+\end{example}
+
+\begin{example}[Conditional Expectation III] \ \\
+Suppose $(X,Y)$ is a random vector and suppose $\mathrm{range} X$ is countable.	
+\end{example}
+
+
+
+
+\begin{theorem} \ \\
+Since we have not define the conditional expectation over a zero measure set. Thus we first suppose $E(Y|X=x)=h(x)$ is a Borel-measurale function, then we have
+$$
+E(Y|X) = h(X).
+$$	
+\end{theorem} \par
+First note that the left side of the equation above is well-defined(Conditional expectation of a sigma-algebra) while the right side is a compound function,
+\begin{proof}
+First assume $(X,Y)$ is a random vector and $\mu_{X,Y} \ll \lambda^2$. On the one hand, $h(X)$ is $\mathcal F$-measurable.
+On the other hand, for all $A \in \sigma(X)$
+
+\begin{eqnarray*}
+\int_A h\circ X \D P &=& \int_\Omega I_A h(X) \D P	\\
+&=& \int_\R I_{X(A)}(x)h(x) \D \mu_X(x) \\
+&=& \int_\R I_{X(A)}(x)h(x)f_X(x) \D \lambda(x) \\
+&=& \int_\R \int_\R I_{X(A)}(x)f_X(x)\frac{yf_{X,Y}(x,y)}{\int_{\R}f_{X,Y}(x,y)\D \lambda(y)}\D\lambda(x) \D \lambda(y) \\
+&=& \int_\R \int_\R I_{X(A)}(x)f_{X,Y}(x,y)y \D \lambda(x) \D \lambda(y) \\ 
+&=& \int_{\R^2} I_{X(A)}(x)y\D \mu_{X,Y}(x,y) \\
+&=& \int_\Omega I_A Y\D P
+\end{eqnarray*}
+This complete the proof of special case. \\
+Case 2 : Assume $\mathrm{range} X$ is countable. 
+\end{proof}
+
+
+
+\section{Limit Theory}
+\section{Convergence of Random Variables}
+
+
+
+
+\section{Conditional Expectations}
+Suppose $(\Omega,\mathcal{F},P)$ is a probability sapce, $\mathcal G$ is sub-sigma algebra and $X \in L^1(P)$.
+\begin{sdefinition}{Conditional Expectation}{}
+The random variables $Y$ is called the conditional expectation of $X$ if the following  holds
+\begin{enumerate}
+  \item $Y \in L^1(\Omega,\mathcal{G},P_{\mathcal{G}}).$
+  \item $\forall A \in \mathcal{G}, \ \int_A X \D P = \int_A Y \D P.$ 
+\end{enumerate}
+
+\end{sdefinition}
+To illustrate that our definition makes sense, first note that the partial average $\nu(A)=\int_A X \D P$ forms a real measure on $(\Omega,\mathcal{G})$ and $\nu \ll P_{\mathcal G}$. Thus Radon-Nikodym Theorem  ensures that there exists unique $Y\in L^1(\Omega,\mathcal{G},P_{\mathcal{G}})$ such that 
+$$
+ \tcbhighmath{\int_A X \D P  = \nu(A) = \int_A Y \D P_{\mathcal G} = \int_A Y \D P}
+$$
+
+\begin{sremark}{}{}
+\begin{enumerate}
+	\item The conditional expectation forms a linear map from $L^1(\Omega,\mathcal{F},P)$	to $L^1(\Omega,\mathcal{G},P_{\mathcal{G}})$, denoted by $E_{\mathcal G}(E(\cdot|\mathcal G))$ and $\Vert E_{\mathcal G}\Vert\leq 1$.
+	\item $Y$ is undistinguishable on a set with zero measure.
+\end{enumerate}
+\end{sremark}
+
+\begin{theorem}[Properties of $E_\mathcal{G}$]
+	
+\end{theorem}
+
+
+
+
+\begin{theorem}[Conditional Expectation defined on $L^2(\Omega,\mathcal{F},P)$] \ \\
+We have already shown that $L^2(\Omega,\mathcal{F},P)$ is a Hilbert space. Note also that $L^2(\Omega,\mathcal{G},P_{\mathcal{G}})$ is a complete  subspace of $L^2(\Omega,\mathcal{F},P)$, as you should verify. Then we have 
+$$
+L^2(\Omega,\mathcal{F},P) = L^2(\Omega,\mathcal{G},P_{\mathcal{G}}) \oplus (L^2(\Omega,\mathcal{G},P_{\mathcal{G}}))^{\perp}.
+$$
+\end{theorem}
+That is for all $X \in L^2(\Omega,\mathcal{F},P)$, then conditional expectation of $X$ with respect to $\mathcal G$ is $E_\mathcal G X$. Also note that for all $A \in \mathcal G$, we have $I_A \in L^2(\Omega,\mathcal{G},P_{\mathcal{G}})$, and hence 
+$$
+\inner{X-E_\mathcal G X}{I_A}=0,
+$$
+which implies 
+$$
+\int_A X \D P = \int_A E_\mathcal G X \D P.
+$$
+
+
+
+
+\begin{remark}
+The Theorem above ensures that an element of $L^2(\Omega,\mathcal{F},P)$ can be orthogonaly decomposed as $h+g$.
+\end{remark}
+
+\begin{definition}[Conditional Expectations with respect to set with nozero measure] 
+	123
+\end{definition}
+\begin{definition}[Conditional Expectations with respect to set with zero measure]
+	123
+\end{definition}
+
+
+
+
+
+

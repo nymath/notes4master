@@ -1,0 +1,581 @@
+\chapter{Measure Theory} 
+A measure is a countably additive function from a $\sigma$-algebra to $[0, \infty] .$ In this chapter, we consider countably additive functions from a $\sigma$-algebra to either $\mathbf{R}$ or $\mathbf{C}$. The first section of this chapter shows that these functions, called real measures or complex measures, form an a Banach space with total variation norm.
+
+The second section of this chapter focuses on decomposition theorems that help us understand real and complex measures. Radon-Nikodym theorem is derived and 
+these results will lead to a proof that the dual space of $L^p(\mu)$ can be identified with $L^{p^{\prime}}(\mu)$.
+\newpage
+\section{Complex Measures}
+Suppose $(\X,\mathcal S)$ is a measurable space.
+
+\begin{sdefinition}{123}{123}
+\begin{itemize}
+	\item A function $\nu:S \to F$ is called countably additive if \\
+	$$
+	\nu(\bigcup_{n=1}^\infty E_n) = \sum_{n=1}^{\infty} \nu(E_n).
+	$$
+	\item A real measure on $(\X,\mathcal S)$ is a countably addtive function: $\nu : \mathcal S \to \R$.
+	\item A complex measure on $(\X,\mathcal S)$ is a countably addtive function: $\nu : \mathcal S \to \C$.
+\end{itemize}	
+\end{sdefinition}
+
+
+\begin{sremark}{}{}
+\begin{enumerate}
+  \item 	We use the terminology (positive) measure to reprensent the function that maps $ \mathcal S \to [0,\infty]$.
+  \item A finite measure is a real measure.
+  \item $\M_{\C}(\mathcal S):=\{\nu:\nu \ \text{is a complex measure on}\ (\X,\mathcal S) \}$
+\end{enumerate}
+\end{sremark}
+
+\begin{sdefinition}{addition and scalar multiplication}{}
+for all $E\in \mathcal S$ and $a \in \F$, define
+\begin{itemize}
+	\item $\nu+\mu: E \mapsto \nu(E)+\mu(E)$.
+	\item $a\nu: E \mapsto$ $a\nu(E)$.
+\end{itemize}
+\end{sdefinition}
+\begin{stheorem}{}{}
+$\M_\F(\mathcal S)$	is a vector space over $\F$.
+\end{stheorem}
+
+
+\begin{stheorem}{}{}
+Suppose $\nu \in \M_{\C}(\mathcal S)$, then 
+\begin{enumerate}
+	\item $\nu(\emptyset)=0$.
+	\item $\sum_{n=1}^{\infty}|\nu(E_k)| < \infty$ for all disjoint sequence $E_1,\cdots$ of $\mathcal S$.
+\end{enumerate}
+\end{stheorem}
+\begin{Proof}
+$$
+\nu(\emptyset) = \nu(\Union{n=1}{\infty}\emptyset) = \Sum{n=1}{\infty}\nu(\emptyset).
+$$
+This implies $\nu(\emptyset)=0$. \par
+On the other hand, suppose F=R, making the following decomposition, we obtain
+$$
+$$
+\end{Proof}
+
+\begin{stheorem}{}{}
+Suppose $\mu$ is a measure on $(\X,\mathcal S)$ and $h \in \LL(\mu)$. Define $\nu:\mathcal S \to \F$ by 
+$$
+\nu(E) = \int_E h \D \mu
+$$
+Then $\nu \in \M_\C(\mathcal S)$.
+\end{stheorem}
+
+\begin{sremark}{}{}
+The $\nu$ defined above is often denoted by $h\D\mu$.
+\end{sremark}
+
+\begin{stheorem}{Properties of complex measures}{}
+\begin{enumerate}
+	\item $\nu(E\backslash D) = \nu(E)-\nu(D) \ for \ all\  D \subset E.$
+	\item $\nu(D \cup E) = \nu(D) + \nu(E) - \nu(D\cap E)$.
+	\item for increasing sequence $E_n$,
+	$$\nu(\Union{n=1}{\infty}E_n)=\lim_{n \to \infty}\nu(E_n). $$
+	\item for decreasing sequence $E_n$,
+	$$\nu(\Intersection{n=1}{\infty}E_n)=\lim_{n \to \infty}\nu(E_n). $$
+\end{enumerate}
+\end{stheorem}
+
+\begin{sdefinition}{Total Variation measure}{}
+Total variation measure of $\nu$ is the function $|\nu|: \mathcal S \to [0,\infty]$ defined by
+$$
+|\nu|(E) = \sup\{\Sum{k=1}{n}|\nu(E_k)|: E_i \cap E_j =\emptyset, \ \Union{k=1}{n}E_k \subset E\}.
+$$
+\end{sdefinition}
+
+\begin{stheorem}{Properties of total variation measure}{}
+\begin{itemize}
+	\item $|\nu(E)| \leq |\nu|(E)$ for all $E \in \mathcal S$.
+	\item $|\nu|(E) = \nu(E)$ if $\nu$ is a finite measure.
+	\item $|\nu|(E) = 0$ iff $\forall A\in \mathcal S, \ \nu(A)=0$.
+	\item Equivalent definition: $$|\nu|(E)=\sup\{|\nu(A)|+|\nu(B)|: A\cap B=\emptyset \ and \ A \cup B \subset E \}.$$
+\end{itemize}
+\end{stheorem}
+
+\begin{stheorem}{}{}
+Total variation measure is indeed a complex measure on $(\X,\mathcal S)$. To be specific,
+$$\nu \in \M_\F(\mathcal S) \ \text{implies} \ |\nu| \ \text{is a measure}.$$
+\end{stheorem}
+
+\begin{sdefinition}{Total variation norm}{}
+$$
+\Vert \nu \Vert := |\nu|(\X)
+$$
+\end{sdefinition}
+
+\begin{stheorem}{}{}
+$(\M_\F(\mathcal S),\Vert\Vert)$ is a Banach space.	
+\end{stheorem}
+We perform the following procedures to prove this theorem.
+
+\begin{Proof} \
+\begin{enumerate}
+	\item $\forall \nu \in \M_\F(\mathcal S)$,$\Vert \nu \Vert=|\nu|(\X) <  \infty$.
+	\item $\Vert \Vert$ is a norm on $\M_\F(\mathcal S)$.
+	\item $(\M_{\F}(\mathcal S),\Vert \Vert)$ is complete. 
+\end{enumerate}
+S1. First suppose $\F=\R$ and $| \nu|(\X)=\infty$. \\
+Provided that $E_n$ is well-defined such that $|\nu|(E_n)=\infty$ and $|\nu(E_n)|\geq n$.
+By definition, there exists $A \subset E_n$ such that
+$$
+|\nu(A)| \geq n+1 + |\nu(E_n)|
+$$
+$$
+|\nu(E_n \backslash A)| = |\nu(E_n)-\nu(A)| \geq n+1
+$$
+$$
+|\nu|(A) + |\nu|(E_n\backslash A) = \infty.
+$$
+Since $|\nu|$ is a measure, we conclude at least one of $\nu|(A)$ and $|\nu|(E_n\backslash A)$ equals $\infty$. Thus we take
+$$
+E_{n+1} = A  \ if \  |\nu|(A)=\infty, \ otherwise \ E_{n+1} = E_n \backslash A.
+$$
+The procedure above induces a decreasing squence $E_n$ with
+$$
+\nu(\Intersection{n=1}{\infty}E_n) = \lim_{n \to \infty}\nu(E_n).
+$$
+Where the left side is well-defined since $\nu$ is a complex measure, while the right side does not exists. This contradicts to our assumption of $|\nu|(X)=\infty$. \\
+S2. The proof of 2 is lefted to the reader. \\
+S3. Suppose $\nu_n$ is Cauchy sequence in $\M_\F \mathcal S$. For each $E\in \mathcal S$, we have
+\begin{eqnarray*}
+	|\nu_i(E)-\nu_j(E)| &=& |(\nu_i-\nu_j)(E)| \\
+	&\leq & |\nu_i-\nu_j|(E) \\
+	&\leq & \Vert \nu_i - \nu_j \Vert.
+\end{eqnarray*}
+Which implies $\nu_i(E)$ is a Cauchy sequence in $\F$. Thus we define $\\nu$ as follows:
+$$
+\nu: \mathcal{S} \to \F, \ E \mapsto \lim_{j \to \infty}\nu_j(E).
+$$
+We make the following claims:
+\begin{enumerate}
+	\item $\lim_{n\to \infty} \Vert \nu_n-\nu\Vert =0$.
+	\item $\nu$ is complex measure.
+\end{enumerate}
+For one thing, suppose $E_1,\cdots,E_n$ are disjoints subsets of $\X$. $\forall \varepsilon >0,\exists m >0$, for all i, j $\geq$ m. We have
+\begin{eqnarray*}
+	\Sum{l=1}{n}|\nu-\nu_k|(E_l) &=& \lim_{j \to \infty}\Sum{l=1}{n}|\nu_j-\nu_k|(E_l)\\
+	&<&\lim_{j\to \infty} \Vert \nu_j - \nu_k \Vert \\
+	&\leq& \varepsilon.
+\end{eqnarray*}
+The definition of $|\nu-\nu_k|(\X)$ implies 
+$$
+|\nu-\nu_k|(\X) = \Vert \nu -\nu_k \Vert < \varepsilon. 
+$$
+On the other hand, also suppose that $E_n$ are disjoint subsets of $X$, considering that
+\begin{eqnarray*}
+|\nu(\Union{k=1}{\infty}E_k)-\Sum{k=1}{n-1}\nu(E_k)| &=& |\lim_{j \to \infty}\nu_j(\Union{k=1}{\infty}E_k)-\lim_{j \to \infty}(\Sum{k=1}{n-1}\nu_j(E_k))| \\
+&=& \lim_{j \to \infty}\Sum{k=n}{\infty}|\nu_j(E_k)|  \\
+&=& \lim_{j \to \infty}\Sum{k=n}{\infty}|(\nu_j-\nu_m)(E_k)+\nu_m(E_k)| \\
+&\leq & \lim_{j \to \infty}\Sum{k=n}{\infty}|(\nu_j-\nu_m)|(E_k)+\Sum{k=n}{\infty}|\nu_m(E_k)| \\
+&\leq & \lim_{j \to \infty} \Vert \nu_j - \nu_m \Vert + \Sum{k=n}{\infty}|\nu_m(E_k)|.
+\end{eqnarray*}
+Then, we choose .... This completes the prove of Theorem.
+
+
+
+\end{Proof}
+
+\section{Decomposition Theorem}
+
+
+
+\begin{stheorem}{Hahn Decomposition Theorem}{Hahn Decomposition}
+Suppose $\nu \in \M_\F(\mathcal S)$. Then there exsits $A,B\in \mathcal S$ such that
+\begin{itemize}
+	\item $A\cup B=\X$ and $A \cap B =\emptyset$.
+	\item $\nu(E) \geq 0$ for all $E \subset A$.
+	\item $\nu(E) \leq 0$ for all $E \subset B$.
+\end{itemize}
+\end{stheorem}
+\ref{thm:Hahn Decomposition}
+
+\begin{Proof}
+Suppose $a = \sup\{\nu(E):E\in \mathcal S\}$. By definition, we have the following inequality
+$$
+a\leq \Vert \nu \Vert < \infty.
+$$
+The sequence $E_n$ is chosen to such that 
+$$
+\nu(E_j) \geq a - \frac{1}{2^j}.
+$$
+We claim that 
+$$
+A = \Intersection{k=1}{\infty}\Union{j=k}{\infty	} E_j, \ B = X\backslash A.
+$$
+To illustrate why $A$ meets our needs, we will show by induction on $n$ if $n\geq k$ holds
+$$
+\nu(\Union{j=k}{n}\nu(E_k)) \geq a - \Sum{j=k}{n	}\frac{1}{2^j}.
+$$
+To get started with the induction, note that if $n=k$, the equation clearly holds.
+Suppose $n \geq k$ hold, then
+\begin{eqnarray*}
+	\nu(\Union{j=k}{n+1}E_j) &=& \nu(\Union{j=k}{n}E_k)+\nu(E_{n+1}) - \nu(\Union{j=k}{n}E_k \backslash E_{n+1}) \\
+	&\geq& a - \Sum{j=k}{n}\frac{1}{2^j}+a - \frac{1}{2^{n+1}}-a \\
+	&=& a-\Sum{j=k}{n+1}\frac{1}{2^j}.
+\end{eqnarray*}
+The continuity of measure admits 
+$$
+\nu(\Union{j=k}{\infty}A_j) \geq a-\frac{1}{2^{k-1}}
+$$
+and 
+$$
+\nu(\Intersection{k=1}{\infty}\Union{j=k}{\infty	} E_j)=a,
+$$
+and hence for all $E\in \mathcal S$ 
+$$
+\nu(E \cap A) = \nu(A) - \nu(A\cap E^c) \geq 0.
+$$
+Since $(E\cap B)\cap A =\emptyset$, we have
+$$
+\nu(E \cap B) = \nu(A\cup E \cap B)-\nu(A) \leq 0.
+$$
+This completes the proof of Theorem .
+\end{Proof}
+
+\begin{sdefinition}{}{}
+Suppose $\nu \in \M_\F(\mathcal S)$. $\nu$ is called lives on a set $A$ if for all $E\in \mathcal S$, we have
+$$
+\nu(E) = \nu(E\cap A)
+$$ 	
+\end{sdefinition}
+\begin{sremark}{}{}
+$\nu$ lives on $A$ implies for all $E \in A^c$, $\nu(E)=0$.	
+\end{sremark}
+
+
+\begin{sdefinition}{Singular Measures}{}
+Suppose $\nu,\mu \in \M_\F(\mathcal S)$. Then $\nu$ and $\mu$ are called singular with    respect to each other, denoted by $\nu \perp \mu$, if $\nu$ and $\mu$ live on different set. More precisely, there exists $A,B\in \mathcal S$ such that   
+\begin{itemize}
+	\item $A\cup B=\X$ and $A\cap B= \emptyset$.
+	\item $\nu(E)=\nu(E\cap A)$ and $\mu(E)=\mu(E\cap B)$
+\end{itemize}
+\end{sdefinition}
+
+
+\begin{stheorem}{Jordan Decomposition Theorem}{Joran_Decomposition}
+Suppose $\nu$ is a real measure on $(\X,\mathcal S)$. Then there exists unique finite measures $\nu^+$ and $\nu^-$ on $(\X,\mathcal S)$ such that 
+$$
+\nu = \nu^+ - \nu^- \ \text{and} \ \nu^+ \perp \nu^-.
+$$
+Moreover, $|\nu|= \nu^+ + \nu^-$.
+\end{stheorem}
+\begin{Proof}
+Let $\X=A\cup B$ be the Hahn Decomposition of $\nu$. Define
+$$
+\nu^+: \mathcal S \to [0,\infty),\ E \mapsto \nu(E\cap A),
+$$
+and 
+$$
+\nu^-: \mathcal S \to [0,\infty), \ E \mapsto -\nu(E\cap B).
+$$
+The contably addivity of $\nu$ implies $\nu^+$ and $\nu^-$ are finite measures on $(\X,\mathcal S)$ with 
+$$
+\nu = \nu^+ - \nu^-, \nu^+ \perp \nu^-. (\nu^+ \ \text{lives on}\  A \ \text{while} \ \nu^- \ \text{lives on}\  B)
+$$
+Let us turn to the proof of $\nu = \nu^+ + \nu^-$. First note that $\nu^+ + \nu^- $ is indeed a measure.\\
+On the one hand, 
+\begin{eqnarray*}
+|\nu(E\cap A)| + |\nu(E\cap B)| &=& (\nu^+ + \nu^-)(E\cap A) + (\nu^+ + \nu^-)(E \cap B) \\
+&=& (\nu^+ + \nu^-)(E).
+\end{eqnarray*}
+Which implies $|\nu|(E) \geq (\nu^+ +\nu^-)(E)$. \\
+On the other hand, Suppose $E_1, E_2$ are disjoint subsets in $E$.
+\begin{eqnarray*}
+	|\nu(E_1)| + |\nu(E_2)| &=& |(\nu^+ - \nu^-)(E_1)| + |(\nu^+ - \nu^-)(E_2)| \\
+	&\leq &  (\nu^+ + \nu^ -)(E_1) + (\nu^+ + \nu^ -)(E_2) \\
+	&\leq & (\nu^+ + \nu^ -)(E).
+\end{eqnarray*}
+Take supreme of both sides, we obtain $|\nu(E)|\leq (\nu^+ + \nu^ -)(E)$.
+As for the uniqueness, note also that
+$$
+\nu^+ = \frac{|\nu|+\nu}{2}, \ \nu^- = \frac{|\nu|-\nu}{2}.
+$$
+Since $|\nu|$ and $\nu$ are well-defined, $\nu^+$ can be uniquely identified by $\nu$.  This completes the proof of Theorem \ref{Joran_Decomposition}.
+\end{Proof}
+
+\begin{sremark}{}{}
+ $\nu^+(\nu^-)$ is called the positive(negative) part of $\nu$.
+\end{sremark}
+
+\begin{sdefinition}{Integration with respect to real measures}{}
+Suppose $\nu \in \M_R(\mathcal S)$, then the integral of $f$ is defined by
+$$
+\int_\X f \D \nu := \int_\X f \D \nu^+ - \int_\X f \D \nu^-
+$$
+\end{sdefinition}
+
+
+
+
+
+\begin{sdefinition}{Absolutely continuous; $\ll$}{}
+Suppose $\nu \M_\F(\mathcal S)$ and $\mu$ is a measure. Then $\nu$ is called absolutely continuous with respect to $\mu$ denoted by $\nu \ll \mu$ if 
+$$
+\mu(E)=0 \implies \nu(E)=0. 
+$$
+\end{sdefinition}
+Note that $\{\nu \in \M_\F(\mathcal S): \nu \ll \mu\}$ is a subspace.
+
+\begin{stheorem}{}{}
+Suppose $\nu \in \M_\F(\mathcal S)$, then
+$$
+\nu \ll \mu \ \text{and} \ \nu \perp \mu \ \text{implies} \ \nu=0. 
+$$	
+\end{stheorem}
+\begin{Proof}
+Since $nu$ and $\mu$ are singular, there exists disjoints subsets such that $X=A\cup B$ and for all $E\in \mathcal S$ 
+\begin{eqnarray*}
+	\nu(E) &=& \nu(E\cap A) \\
+	\mu(E) &=& \mu(E\cap B) \\
+	\mu(E\cap A) &=& \mu(E\cap A \cap B) = 0.
+\end{eqnarray*}
+Also note that $\nu$ is absolutely continuous with respect to $\mu$, and thus we have
+$$
+\nu(E) = \nu(E \cap A) =0.
+$$
+Or $\Vert \nu \Vert=0$.
+\end{Proof}
+
+
+
+
+
+
+
+
+
+\begin{stheorem}{Lebesgue Decomposition Theorem}{}
+Suppose $\mu$ is a measure and $\nu \in \M_\F(\mathcal S)$. Then there exsits unique $\nu_a,\nu_b \in \M_\F(\mathcal S)$ such that $\nu=\nu_a+\nu_s$ and 
+$$
+\nu_a \ll \mu \ \text{and} \ \nu_s \perp \mu.
+$$
+\end{stheorem}
+\begin{Proof}
+Let 
+$$
+b = \sup \{ |\nu|(B): B\in \mathcal S, \ \mu(B) = 0\},
+$$
+and $B_k$ be such that 
+$$
+|\nu|(B_k)\geq b -\frac{1}{k} \ \text{and} \ \mu(B_k)=0,
+$$
+Taking $B$ as 
+$$
+B = \Union{k=1}{\infty}B_k.
+$$
+then $\mu(B)=0$ and $|\nu(B)|=b$. Let A = $X\backslash B$ and 
+\begin{eqnarray*}
+	\nu_a &:& \mathcal S \to \F, \ E\mapsto \nu(E\cap A) \\
+	\nu_s &:& \mathcal S \to \F, \ E\mapsto \nu(E\cap B).
+\end{eqnarray*}
+Clear $\nu = \nu_a + \nu_s$. Note also that 
+$$
+\mu(E) = \mu(E\cap A) + \mu(E \cap B) = \mu(E \cap A),
+$$
+which implies $\mu$ and $\nu_s$ live on different sets and thus mutually singular.
+At last, to prove $\nu_a \ll \mu$, first suppose $\mu(E)=0$.
+$$
+\nu_a(E) = \nu(E\cap A) = \nu(E\backslash B)
+$$
+Since $\mu(E)=0$, we have $\mu(B\cup E)=0$ and thus
+$$
+b\geq |\nu|(B\cup E) = |\nu|(B) + |\nu|(E\backslash B) = b + |\nu|(E\backslash B).
+$$
+This implies $|\nu|(E\backslash B)=0$, and hence $\nu(E\backslash B)=0$.
+As for the uniqueness, suppose $\nu_1,\nu_2$ be another Lebesgue-Decompositon of $\nu$ with respect to $\mu$. Then $\nu_a + \nu_s = \nu_1 + \nu_2$ implies
+$$
+\nu_a - \nu_1 = \nu_s - \nu_2.
+$$
+The left part is absolutely continuous to $\mu$ while the right part is singuar to $\mu$. 
+Hence we conclude $\nu_1=\nu_a$ and $\nu_2=\nu_S$.
+\end{Proof}
+
+
+
+
+
+
+
+\begin{stheorem}{Radon-Nikodym Theorem}{}
+Suppose $\mu$ is a $\sigma$-finite measure on a measurable space $(\X,\mathcal S)$. Suppose $\nu$ is a complex measure $(\X,\mathcal S)$ such $\nu \ll \mu$. Then there exists $h \in \LL^1(\mu)$ such that $\D \nu = h\D \mu$.
+\end{stheorem}
+\begin{Proof} \ \\
+\textbf{Step 1}. Suppose $\nu$ and $\mu$ are finite measures on $(\X,\mathcal S)$. \\
+For all $f \in L^2(\nu+\mu)$, define $\varphi$ as 
+$$
+\varphi : L^2(\nu+\mu) \to \R, \ f \mapsto \int_\X f \D \nu.
+$$ 
+To see why our definition makes sense, note that 
+$$
+\int_\X |f| \D \nu \leq \int_\X |f| \D (\nu+\mu) \leq (\nu(\X)+\mu(\X))^{\frac{1}{2}}\Vert f\Vert_{L^2(\nu+\mu)}.
+$$
+This implies $f\in L^2(\nu)$ and $\Vert \varphi \Vert \leq (\nu(\X)+\mu(\X))^{\frac{1}{2}}$.
+Since $\nu$ is a bounded linear functional on $f \in L^2(\nu+\mu)$. The Riesz Representation Theorem now implies that there exists unique $g \in L^2(\nu+\mu)$ such that 
+$$
+\int_\X f \D \nu = \int_\X fg \D (\nu+\mu).
+$$
+Equvalently,
+$$
+\int_\X f(1-g) \D \nu = \int_\X fg \D \mu.
+$$
+Suppose 
+\begin{eqnarray*}
+	E_1 &=& \{ x\in \X: g(x) \geq 1   \}\\
+    E_0 &=& \{ x\in \X: g(x) < 0   \}.
+\end{eqnarray*}
+And 
+\begin{eqnarray*}
+	&f=\chi_{E_1} \implies \mu(E_1) = 0 \implies \nu(E_1)=0 \\
+	&f= \chi_{E_0} \implies \mu(E_0) = 0 \implies \nu(E_0)=0.
+\end{eqnarray*}
+Thus we can define $g$ as a function with range [0,1), and we define $h:\X \to [0,\infty)$ by
+$$
+h(x) = \frac{g(x)}{1-g(x)}.
+$$
+Then suppose $E\in\mathcal S$, and let $f_k$ be
+$$
+f_k(x) = \frac{\chi_E(x)}{1-g(x)}I_{\frac{\chi_E(x)}{1-g(x)}<k}(x).
+$$
+Easy to verify that $f_k$ is an increasing function with
+$$
+\int_\X f_k(x)^2 \D (\nu+\mu) \leq k^2 (\nu(\X)+\mu(\X)).
+$$
+Thus $f_k \in L^2(\nu+\mu)$ and hence 
+$$
+\int_\X f_k(1-g) \D \nu = \int_\X f_kg\D \mu
+$$
+The Monotone Convergence Theorem now implies 
+$$
+\int_\X \chi_E \D \nu = \int_\X \chi_E h \D \mu.
+$$
+\textbf{Step 2}. Suppose $\nu$ is a measure while $\mu$ is a $\sigma$-finite measure. \\
+Now relex the assumption on $\mu$ to the hypothesis that $\mu$ is a $\sigma$-finite measure.
+Thus there exsits an increasing sequence sets $\X_1\subset\X_2 \subset \cdots$ such that $\Union{j=1}{\infty}\X_j=\X$ and $\mu(\X_j)<\infty$.
+Let $\nu_k,\mu_k$ be the restriction of $\nu,\mu$ on $\X_k$. Since $\nu_k$ and $\mu_k$ are finite measures, step1 implies there exists $h_k \in L^1(\mu)$ such that $\D \nu_k = h_k \D\mu_k$. Next, for $j<k$ and for all $E \in \mathcal S$, we have
+\begin{eqnarray*}
+	\int_{E\cap\X_j}h_j \D \mu_j &=& \int_{E\cap \X_j}h_j \D \mu \\
+	&=& \nu_j(E\cap \X_j) \\
+	&=& \nu_k(E \cap \X_j) \\
+	&=& \int_{E \cap \X_j}h_k \D \mu.
+\end{eqnarray*}
+This implies 
+$$
+\mu(\{x\in \X_k: h_j(x)\neq h_k(x)\})=0.
+$$
+We conclude there exists $h:\X \to [0,\infty)$ such that 
+$$
+\mu(\{x\in \X_k: h(x)\neq h_k(x)\})=0
+$$
+for all $k>0$. Suppose otherwise ...
+$$
+\nu(E\cap \X_k) = \int_{E\cap \X_k} h\D \mu
+$$
+Let $k \to \infty$, and complete the proof. \\
+\textbf{Step 3}. Suppose $\nu$ is a real measure while $\mu$ is a $\sigma$-finite measure. \\
+Note that $|\nu|+\nu$ and $|\nu|-\nu$ are finite measures. By the case proved last page, there exists $h_+, h_- \in L^1(\mu)$ such that 
+$$
+\D (|\nu|+\nu) = h_+ \D \mu,\ \D (|\nu|-\nu) = h_- \D \mu.
+$$
+and 
+$$
+\D \nu = \frac{h_+ + h_-}{2}\D \mu.
+$$
+\end{Proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{sremark}{}{}
+The construction of $h$ shows that it is undistinguishable on a set of zero measure with respect $\mu$,
+\end{sremark}
+
+\begin{stheorem}{}{}
+Suppose $\nu$ is a complex measure and $\mu,\lambda$ are $\sigma$-finite measures on a measurable space $(\X,\mathcal S)$, 
+\begin{enumerate}
+	\item If $\nu \ll \mu$, then $g \in L^1(\X,\nu)$ implies $g\frac{\D \nu}{\D \mu}\in L^1(\X,\mu)$	 and $\int_X g \D \nu=\int_X g\frac{\D \nu}{\D \mu} \D\mu$.
+	\item Chain rule: If $\nu \ll \mu$, $\mu \ll \lambda$, then $\nu \ll \lambda$ and 
+	$\frac{\D \nu}{\D \lambda} = \frac{\D \nu}{\D \mu}\frac{\D \mu}{
+	\D \lambda}$.
+\end{enumerate}	
+\end{stheorem}
+\begin{Proof}
+Suppose $E\in \mathcal S$, and $f=\chi_E$.
+$$
+\int_\X g\D \nu =\nu(E) = \int_E \frac{\D \nu}{\D \mu}\D \mu = \int_\X g \frac{\D\nu}{\D \mu} \D \mu.
+$$
+Other cases are obtained by fact that the simple function is dense $L^1(\X,\nu)$. \\
+\end{Proof}
+
+
+
+
+
+
+
+
+\begin{sexample}{}{}
+Suppose $P$ is a probabilty measure on $(\Omega,\mathcal F)$ and $B\in \mathcal F$ with $P(B)>0$, then 
+$$
+P_B: E \mapsto \frac{P(E\cap B)}{P(B)}
+$$ 
+is a probability measure on $(\Omega,\mathcal F)$, and $P_B \ll P$.
+$$
+\frac{\D P_B}{\D P} = \frac{I_B}{P(B)}.
+$$ 
+Thus if $X \in L^1(\Omega,\mathcal F,P_B)$, we have 
+$$
+E(X|B) := E^{P_B}(X) = \frac{E(XI_B)}{P(B)}.
+$$
+
+\end{sexample}
+
+\section{Product Measures}
+$$
+x \in \bigcup_{n=1}^{\infty} A_n \iff \exists n,x \in A_n
+$$
+
+$$
+\bigcup_{n=1}^{\infty}A_n := \{ x: \exists n, x \in A_n  \}
+$$
+
+
+$$
+f: \mathbb{R} \to \mathbb{R}, \ x \mapsto x^2 
+$$
+

@@ -6,16 +6,17 @@
 \contentsline {subsubsection}{\numberline {3.1.1}Pearson rho}{6}{subsubsection.3.1.1}%
 \contentsline {subsubsection}{\numberline {3.1.2}Spearman rho}{6}{subsubsection.3.1.2}%
 \contentsline {subsubsection}{\numberline {3.1.3}Kendall tau}{7}{subsubsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.2}各个相关系数之间的关系}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}各个相关系数之间的关系}{8}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}尾部相依性}{8}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}偏相关系数，条件相关系数}{8}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.4}偏相关系数，条件相关系数}{9}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Bivariate(Explicit) Copula Classes}{9}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Gaussian Copula}{9}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}t Copula}{10}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}t Copula}{11}{subsection.4.2}%
 \contentsline {section}{\numberline {5}Archimedean Copulas}{11}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Simple Archimedean Copula}{11}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}Simple Archimedean Copula}{12}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Laplace-Lebesgue-Stieltjes Transform}{12}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Nested Archimedean Copula}{13}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Simulations}{13}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Applications in Assurance}{13}{section.6}%
-\contentsline {section}{\numberline {7}Applications in Derivatives}{13}{section.7}%
+\contentsline {subsection}{\numberline {5.3}Nested Archimedean Copula}{12}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Simulations}{12}{subsection.5.4}%
+\contentsline {section}{\numberline {6}test}{13}{section.6}%
+\contentsline {section}{\numberline {7}Applications in Assurance}{13}{section.7}%
+\contentsline {section}{\numberline {8}Applications in Derivatives}{13}{section.8}%
